@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/08 16:44:47 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:06:43 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,3 @@ int	main(/*int argc, char **argv*/)
 	mlx_loop_hook(data.mlx_ptr, exec_move, &data);
 	mlx_loop(data.mlx_ptr);
 }
-	// mlx_key_hook(data.win_ptr, exec_move, &data);
