@@ -6,7 +6,7 @@
 #    By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:14:18 by avancoll          #+#    #+#              #
-#    Updated: 2022/11/07 16:36:56 by avancoll         ###   ########.fr        #
+#    Updated: 2022/11/08 12:37:12 by avancoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= fdf.a
 
 EXEC		= fdf
 
-SRCS		= SRCS/test.c
+SRCS		= SRCS/main.c
 
 OBJS		= $(SRCS:.c=.o)
 

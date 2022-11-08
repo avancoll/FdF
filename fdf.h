@@ -6,15 +6,21 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/07 17:30:12 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:37:07 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define X_SIZE 5120 / 2
-# define Y_SIZE 2880 / 2
+# include <fcntl.h> //open
+# include <unistd.h> //close read write
+# include <stdlib.h> //malloc free
+# include <stdio.h> // perror
+# include <string.h> //strerror
+# include <stdlib.h> //exit
+# include <math.h> // maths
+# include <mlx.h> //minilibx
 
 enum {
 	ON_KEYDOWN = 2,
@@ -40,25 +46,20 @@ enum {
 	KEY_UP = 126
 };
 
-# include <fcntl.h> //open
-# include <unistd.h> //close read write
-# include <stdlib.h> //malloc free
-# include <stdio.h> // perror
-# include <string.h> //strerror
-# include <stdlib.h> //exit
-# include <math.h> // maths
-# include <mlx.h> //minilibx
+enum {
+	SIZE_X = 1920,
+	SIZE_Y = 1080,
+};
 
-typedef struct	s_data
+typedef struct s_data
 {
-	void	*img;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
 	char	*addr;
-	void	*mlx;
-	void	*win;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bits_pixel;
+	int		size_line;
 	int		endian;
 }				t_data;
-
 
 #endif
