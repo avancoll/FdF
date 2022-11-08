@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/08 12:37:07 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:51:40 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h> //exit
 # include <math.h> // maths
 # include <mlx.h> //minilibx
+# include <limits.h> //limits
 
 enum {
 	ON_KEYDOWN = 2,
@@ -49,10 +50,17 @@ enum {
 enum {
 	SIZE_X = 1920,
 	SIZE_Y = 1080,
+	BUFFER_SIZE = 42
 };
 
 typedef struct s_data
 {
+	int		x;
+	int		y;
+	int		mv_up;
+	int		mv_down;
+	int		mv_right;
+	int		mv_left;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
@@ -61,5 +69,14 @@ typedef struct s_data
 	int		size_line;
 	int		endian;
 }				t_data;
+
+char	*ft_free(char *s1, char *s2);
+int		ft_strlen(char *str);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin_free(char *s1, char *s2);
+char	*ft_get_line(char *save);
+char	*ft_after_line(char *save);
+char	*ft_read(int fd, char *save);
+char	*get_next_line(int fd);
 
 #endif
