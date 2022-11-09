@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/08 15:51:40 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:50:33 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,14 @@ char	*ft_get_line(char *save);
 char	*ft_after_line(char *save);
 char	*ft_read(int fd, char *save);
 char	*get_next_line(int fd);
+
+void	mlx_put_pixel(t_data *data, int x, int y, int color);
+void	innit_data(t_data *data);
+int		ft_close(t_data *data);
+int		key_pressed(int keycode, t_data *data);
+int		key_released(int keycode, t_data *data);
+int		exec_move(t_data *data);
+void	draw_map(t_data *data);
+void	parse(char *argv);
 
 #endif
