@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/09 16:50:33 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/11 16:12:14 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,13 @@ enum {
 	BUFFER_SIZE = 42
 };
 
-typedef struct s_data
+typedef	struct	s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
+
+typedef	struct	s_data
 {
 	int		x;
 	int		y;
@@ -80,12 +86,18 @@ char	*ft_read(int fd, char *save);
 char	*get_next_line(int fd);
 
 void	mlx_put_pixel(t_data *data, int x, int y, int color);
-void	innit_data(t_data *data);
+void	init_data(t_data *data);
 int		ft_close(t_data *data);
 int		key_pressed(int keycode, t_data *data);
 int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
 void	draw_map(t_data *data);
 void	parse(char *argv);
+
+t_list	*ft_lstnew(void *content);
+t_list	*ft_lstlast(t_list *lst);
+int		ft_lstsize(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/09 17:13:00 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:14:39 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 void	parse(char *argv)
 {
-	int	fd;
-	fd = open(argv, O_RDONLY);
+	int		fd;
 	char	*line;
+	t_list	*new;
+	t_list	*map;
 
+	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
+	map = ft_lstnew(line);
+	printf("[%d]: %s", ft_lstsize(map), map->content);
 	while (line)
 	{
-		printf("%s", line);
-		free(line);
 		line = get_next_line(fd);
+		new = ft_lstnew(line);
+		ft_lstadd_back(&map, new);
+		printf("[%d]: %s", ft_lstsize(map), new->content);
 	}
 }
-
 
 void	draw_map(t_data *data)
 {

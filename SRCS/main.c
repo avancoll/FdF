@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/09 16:50:15 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:24:55 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	mlx_put_pixel(t_data *data, int x, int y, int color)
 	}
 }
 
-void	innit_data(t_data *data)
+void	init_data(t_data *data)
 {
 	data->x = SIZE_X / 2;
 	data->y = SIZE_Y / 2;
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	parse(argv[1]);
-	innit_data(&data);
+	init_data(&data);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, SIZE_X, SIZE_Y, "fdf");
 	data.img_ptr = mlx_new_image(data.mlx_ptr, SIZE_X, SIZE_Y);
