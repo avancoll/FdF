@@ -6,11 +6,39 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/11 17:14:39 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:38:55 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+int	int_counter(char *s)
+{
+	int	i;
+	int	count;
+	int	is_digit;
+
+	count = 0;
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		is_digit = 0;
+		while (s[i] && ((s[i] >= '0' && s[i] <= '9') || s[i] == '-'))
+		{
+			if (is_digit == 0)
+				count++;
+			is_digit = 1;
+			i++;
+		}
+		while (s[i] && s[i] == ' ')
+			i++;
+		if (s[i] == '\n')
+			break ;
+	}
+	return (count);
+}
 
 void	parse(char *argv)
 {
@@ -18,18 +46,23 @@ void	parse(char *argv)
 	char	*line;
 	t_list	*new;
 	t_list	*map;
+	int		x;
+	int		y;
 
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
 	map = ft_lstnew(line);
-	printf("[%d]: %s", ft_lstsize(map), map->content);
+	x = ft_lstsize(map) - 1;
+	y = int_counter(line);
+	printf("[x = %d, y = %d]: %s", ft_lstsize(map) - 1, int_counter(line), map->content);
 	while (line)
 	{
 		line = get_next_line(fd);
 		new = ft_lstnew(line);
 		ft_lstadd_back(&map, new);
-		printf("[%d]: %s", ft_lstsize(map), new->content);
+		printf("[x = %d, y = %d]: %s", ft_lstsize(map) - 1, int_counter(line), new->content);
 	}
+	close(fd);
 }
 
 void	draw_map(t_data *data)
