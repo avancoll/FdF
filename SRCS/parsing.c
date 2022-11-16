@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/16 18:02:59 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:05:16 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ t_list	*list_creator(char *argv)
 
 int	**test(t_list *map)
 {
-	int	**xyz;
+	int	**xyz; //ajouter dans une liste
+	int	max_x; //ajouter dans une liste
+	int	max_y; //ajouter dans une liste
 	int	x;
 	int	y;
-	int	max_x;
-	int	max_y;
 
 	x = 0;
 	y = 0;
