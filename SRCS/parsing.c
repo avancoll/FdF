@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/14 17:38:55 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:02:59 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,187 +40,47 @@ int	int_counter(char *s)
 	return (count);
 }
 
-void	parse(char *argv)
+t_list	*list_creator(char *argv)
 {
 	int		fd;
 	char	*line;
 	t_list	*new;
-	t_list	*map;
-	int		x;
-	int		y;
+ 	t_list	*map;
 
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
 	map = ft_lstnew(line);
-	x = ft_lstsize(map) - 1;
-	y = int_counter(line);
-	printf("[x = %d, y = %d]: %s", ft_lstsize(map) - 1, int_counter(line), map->content);
+	map->y = int_counter(line);
 	while (line)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(fd); //attention protection
 		new = ft_lstnew(line);
 		ft_lstadd_back(&map, new);
-		printf("[x = %d, y = %d]: %s", ft_lstsize(map) - 1, int_counter(line), new->content);
 	}
+	map->x = ft_lstsize(map) - 2;
 	close(fd);
+	return (map);
 }
 
-void	draw_map(t_data *data)
+int	**test(t_list *map)
 {
-	int	i = 0;
-	float	A = 45 * (M_PI / 180);
-	float	B = (sin(30) / cos(45)) * (M_PI / 180);
-	float	C = 0;
+	int	**xyz;
+	int	x;
+	int	y;
+	int	max_x;
+	int	max_y;
 
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
+	x = 0;
+	y = 0;
+	max_x = map->x;
+	max_y = map->y;
+	xyz = malloc(sizeof(*xyz) * max_x);
+	while (x <= max_x)
 	{
-		data->x = i;
-		data->y = 0;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 0 * sin(B);
-		data->x = data->x * cos(C) - 0 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
+		xyz[x] = malloc(sizeof(int) * max_y);
+		map = map->next;
+		printf("%s", map->content);
+		x++;
 	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = 0;
-		data->y = i;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 0 * sin(B);
-		data->x = data->x * cos(C) - 0 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = i;
-		data->y = 500;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 0 * sin(B);
-		data->x = data->x * cos(C) - 0 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = 500;
-		data->y = i;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 0 * sin(B);
-		data->x = data->x * cos(C) - 0 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = i;
-		data->y = 0;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 1000 * sin(B);
-		data->x = data->x * cos(C) - 1000 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = 0;
-		data->y = i;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 1000 * sin(B);
-		data->x = data->x * cos(C) - 1000 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = i;
-		data->y = 500;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 1000 * sin(B);
-		data->x = data->x * cos(C) - 1000 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
-	i = 0;
-	data->x = 0;
-	data->y = 0;
-	while (i < 500)
-	{
-		data->x = 500;
-		data->y = i;
-		data->x = (data->x) * cos(A) - (data->y) * sin(A);
-		data->y = (data->x) * sin(A) + (data->y) * cos(A);
-		data->x = data->x;
-		data->y = data->y * cos(B) - 1000 * sin(B);
-		data->x = data->x * cos(C) - 1000 * sin(C);
-		data->y = data->y;
-		data->x += SIZE_X /2;
-		data->y += SIZE_Y /2;
-		// printf("x = %d et y = %d\n", data->x, data->y);
-		mlx_put_pixel(data, data->x, data->y, 0x00FF0000);
-		i++;
-	}
+	return (xyz);
 }

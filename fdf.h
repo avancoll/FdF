@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/14 15:51:09 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:45:31 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ enum {
 
 typedef	struct	s_list
 {
-	void			*content;
+	int				x;
+	int				y;
+	char			*content;
 	struct s_list	*next;
 }				t_list;
 
@@ -91,8 +93,9 @@ int		ft_close(t_data *data);
 int		key_pressed(int keycode, t_data *data);
 int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
-void	draw_map(t_data *data);
-void	parse(char *argv);
+// void	draw_map(t_data *data);
+t_list	*list_creator(char *argv);
+int		**test(t_list *map);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
