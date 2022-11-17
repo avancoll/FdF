@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/16 18:06:21 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:39:08 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_list	*list_creator(char *argv)
 	int		fd;
 	char	*line;
 	t_list	*new;
- 	t_list	*map;
+	t_list	*map;
 
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
@@ -62,25 +62,64 @@ t_list	*list_creator(char *argv)
 	return (map);
 }
 
-int	**test(t_list *map)
+int	ft_atoi(const char *str, int *i)
 {
-	int	**xyz; //ajouter dans une liste
-	int	max_x; //ajouter dans une liste
-	int	max_y; //ajouter dans une liste
-	int	x;
-	int	y;
+	unsigned long long		res;
+	int						sign;
+
+	res = 0;
+	sign = 1;
+	while (str[*i] == 32)
+		(*i)++;
+	if (str[*i] == '-' || str[*i] == '+')
+		if (str[*i++] == '-')
+			sign = -sign;
+	while (str[*i] == '0')
+		(*i)++;
+	while (str[*i] && str[*i] >= '0' && str[*i] <= '9')
+		res = res * 10 + str[(*i)++] - 48;
+	return (res * sign);
+}
+
+int	**ft_free_int(int **xyz, int x)
+{
+	while (x >= 0)
+	{
+		free(xyz[x]);
+		x--;
+	}
+	free(xyz);
+	printf("FREEEE\n");
+	return (0);
+}
+
+int	**list_to_int(t_list *map)
+{
+	t_coo	coo;
+	int		i;
+	int		x;
+	int		y;
 
 	x = 0;
-	y = 0;
-	max_x = map->x;
-	max_y = map->y;
-	xyz = malloc(sizeof(*xyz) * max_x);
-	while (x <= max_x)
+	coo.x_max = map->x;
+	coo.y_max = map->y;
+	coo.xyz = malloc(sizeof(*coo.xyz) * coo.x_max); //attention protect
+	if (!coo.xyz)
+		return (0);
+	while (x < coo.x_max)
 	{
-		xyz[x] = malloc(sizeof(int) * max_y);
+		coo.xyz[x] = malloc(sizeof(int) * coo.y_max); //proetect
+		if (!coo.xyz[x])
+			return (ft_free_int(coo.xyz, x));
+		i = 0;
+		y = 0;
+		while (y < coo.y_max)
+		{
+			coo.xyz[x][y] = ft_atoi(map->content, &i);
+			y++;
+		}
 		map = map->next;
-		printf("%s", map->content);
 		x++;
 	}
-	return (xyz);
+	return (coo.xyz);
 }

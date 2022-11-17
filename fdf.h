@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/16 17:45:31 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:07:11 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ enum {
 	BUFFER_SIZE = 42
 };
 
-typedef	struct	s_list
+typedef struct s_list
 {
 	int				x;
 	int				y;
@@ -61,7 +61,7 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-typedef	struct	s_data
+typedef struct s_data
 {
 	int		x;
 	int		y;
@@ -77,6 +77,13 @@ typedef	struct	s_data
 	int		size_line;
 	int		endian;
 }				t_data;
+
+typedef struct s_coo
+{
+	int	**xyz;
+	int	x_max;
+	int	y_max;
+}				t_coo;
 
 char	*ft_free(char *s1, char *s2);
 int		ft_strlen(char *str);
@@ -95,12 +102,11 @@ int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
 // void	draw_map(t_data *data);
 t_list	*list_creator(char *argv);
-int		**test(t_list *map);
+int		**list_to_int(t_list *map);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-
 
 #endif
