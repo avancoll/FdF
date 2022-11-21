@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/17 16:08:23 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:35:24 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	data.img_ptr = mlx_new_image(data.mlx_ptr, SIZE_X, SIZE_Y);
 	data.addr = mlx_get_data_addr(data.img_ptr, &data.bits_pixel,
 			&data.size_line, &data.endian);
+	draw_map(&data, &coo);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);
 	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
 	mlx_hook(data.win_ptr, ON_KEYUP, 0, key_released, &data);

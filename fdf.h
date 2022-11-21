@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/17 16:07:11 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:35:47 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		ft_close(t_data *data);
 int		key_pressed(int keycode, t_data *data);
 int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
-// void	draw_map(t_data *data);
+void	draw_map(t_data *data, t_coo *coo);
 t_list	*list_creator(char *argv);
 int		**list_to_int(t_list *map);
 

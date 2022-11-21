@@ -6,19 +6,20 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/17 16:09:41 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:54:06 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	draw_map(t_data *data)
+void	draw_map(t_data *data, t_coo *coo)
 {
+	(void)coo;
 	int	i = 0;
 	float	A = 45 * (M_PI / 180);
 	float	B = (sin(30) / cos(45)) * (M_PI / 180);
 	float	C = 0;
-
+	printf("A = %f, B = %f\n", A, B);
 	data->x = 0;
 	data->y = 0;
 	while (i < 500)
