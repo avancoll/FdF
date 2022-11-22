@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/21 15:35:47 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:48:45 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_list
 
 typedef struct s_data
 {
-	int		x;
-	int		y;
+	int		offset_x;
+	int		offset_y;
 	int		mv_up;
 	int		mv_down;
 	int		mv_right;
@@ -102,7 +102,7 @@ int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
 void	draw_map(t_data *data, t_coo *coo);
 t_list	*list_creator(char *argv);
-int		**list_to_int(t_list *map);
+t_coo	*list_to_int(t_list *map);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);

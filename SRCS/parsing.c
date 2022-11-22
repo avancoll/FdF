@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/21 15:25:03 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:39:18 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_list	*list_creator(char *argv)
 		new = ft_lstnew(line);
 		ft_lstadd_back(&map, new);
 	}
-	map->x = ft_lstsize(map) - 2;
+	map->x = ft_lstsize(map) - 1;
 	close(fd);
 	return (map);
 }
@@ -93,33 +93,34 @@ int	**ft_free_int(int **xyz, int x)
 	return (0);
 }
 
-int	**list_to_int(t_list *map)
+t_coo	*list_to_int(t_list *map)
 {
-	t_coo	coo;
+	t_coo	*coo;
 	int		i;
 	int		x;
 	int		y;
 
+	coo = malloc(sizeof(t_coo));
 	x = 0;
-	coo.x_max = map->x;
-	coo.y_max = map->y;
-	coo.xyz = malloc(sizeof(*coo.xyz) * coo.x_max); //attention protect
-	if (!coo.xyz)
+	coo->x_max = map->x;
+	coo->y_max = map->y;
+	coo->xyz = malloc(sizeof(*coo->xyz) * coo->x_max); //attention protect
+	if (!coo->xyz)
 		return (0);
-	while (x < coo.x_max)
+	while (x < coo->x_max)
 	{
-		coo.xyz[x] = malloc(sizeof(int) * coo.y_max); //proetect
-		if (!coo.xyz[x])
-			return (ft_free_int(coo.xyz, x));
+		coo->xyz[x] = malloc(sizeof(int) * coo->y_max); //proetect
+		// if (!coo->xyz[x])
+		// 	return (ft_free_int(coo->xyz, x));
 		i = 0;
 		y = 0;
-		while (y < coo.y_max)
+		while (y < coo->y_max)
 		{
-			coo.xyz[x][y] = ft_atoi(map->content, &i);
+			coo->xyz[x][y] = ft_atoi(map->content, &i);
 			y++;
 		}
 		map = map->next;
 		x++;
 	}
-	return (coo.xyz);
+	return (coo);
 }

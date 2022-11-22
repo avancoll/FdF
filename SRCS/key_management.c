@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:25:51 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/16 15:15:18 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:53:08 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_close(t_data *data)
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	exit(0);
-	return (0);
 }
 
 int	key_pressed(int keycode, t_data *data)
@@ -39,8 +38,6 @@ int	key_pressed(int keycode, t_data *data)
 
 int	key_released(int keycode, t_data *data)
 {
-	if (keycode == KEY_ESC)
-		ft_close(data);
 	if (keycode == KEY_W)
 		data->mv_up = 0;
 	if (keycode == KEY_A)
@@ -55,13 +52,13 @@ int	key_released(int keycode, t_data *data)
 int	exec_move(t_data *data)
 {
 	if (data->mv_left == 1)
-		mlx_put_pixel(data, --data->x, data->y, 0x00FF0000);
-	if (data->mv_right == 1)
-		mlx_put_pixel(data, ++data->x, data->y, 0x00FF0000);
-	if (data->mv_up == 1)
-		mlx_put_pixel(data, data->x, --data->y, 0x00FF0000);
-	if (data->mv_down == 1)
-		mlx_put_pixel(data, data->x, ++data->y, 0x00FF0000);
+		printf("OUI\n");
+	// if (data->mv_right == 1)
+
+	// if (data->mv_up == 1)
+
+	// if (data->mv_down == 1)
+
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 	return (0);
 }
