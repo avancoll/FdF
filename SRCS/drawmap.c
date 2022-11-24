@@ -6,34 +6,45 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/22 17:50:27 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:27:05 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	draw_map(t_data *data, t_coo *coo)
+void	draw_map(t_data *data, int color)
 {
-	float	X = 0;
-	float	Y = 0;
+	float	x;
+	float	y;
+	float	rad_A;
+	float	rad_B;
+	float	rad_C;
+	int	ax;
+	int	ay;
 
-	float	A = 0;
-	float	B = -35;
-	float	C = -45;
+	x = 0;
+	y = 0;
+	ax = 0;
+	ay = 0;
+	rad_A = data->key->A * M_PI / 180;
+	rad_B = data->key->B * M_PI / 180;
+	rad_C = data->key->C * M_PI / 180;
 
-	int	ax = 0;
-	int	ay = 0;
-	while (ax < coo->x_max)
+	while (ax < data->coo->x_max)
 	{
 		ay = 0;
-		while (ay < coo->y_max)
+		while (ay < data->coo->y_max)
 		{
-			X = (30 * ax * (cos(B) * cos(C))) + (30 * ay * ((sin(A) * sin(B) * cos(C)) - (cos(A) * sin(C)))) + (3 * coo->xyz[ax][ay] * ((cos(A) * sin(B) * cos(C)) + (sin(A) * sin(C)))) + data->offset_x;
-			Y = (30 * ax * (cos(B) * sin(C))) + (30 * ay * ((sin(A) * sin(B) * sin(C)) - (cos(A) * cos(B)))) + (3 * coo->xyz[ax][ay] * ((cos(A) * sin(B) * sin(C)) - (sin(A) * cos(C)))) + data->offset_y;
-			if (coo->xyz[ax][ay] == 0)
-				mlx_put_pixel(data, X, Y, 0x00FF0000);
-			else
-				mlx_put_pixel(data, X, Y, 0x00ff1e);
+			x = (30 * ax * (cos(rad_B) * cos(rad_C))) + (30 * ay * ((sin(rad_A) * sin(rad_B) * cos(rad_C)) - (cos(rad_A) * sin(rad_C)))) + (3 * data->coo->xyz[ax][ay] * ((cos(rad_A) * sin(rad_B) * cos(rad_C)) + (sin(rad_A) * sin(rad_C)))) + data->key->offset_x;
+			y = (30 * ax * (cos(rad_B) * sin(rad_C))) + (30 * ay * ((sin(rad_A) * sin(rad_B) * sin(rad_C)) + (cos(rad_A) * cos(rad_C)))) + (3 * data->coo->xyz[ax][ay] * ((cos(rad_A) * sin(rad_B) * sin(rad_C)) - (sin(rad_A) * cos(rad_C)))) + data->key->offset_y;
+			if (data->coo->xyz[ax][ay] == 0 && color == 0)
+				mlx_put_pixel(data, x, y, 0x00FF0000);
+			else if (data->coo->xyz[ax][ay] != 0 && color == 0)
+				mlx_put_pixel(data, x, y, 0x00ff1e);
+			else if (data->coo->xyz[ax][ay] == 0 && color == 1)
+				mlx_put_pixel(data, x, y, 0x000000);
+			else if (data->coo->xyz[ax][ay] != 0 && color == 1)
+				mlx_put_pixel(data, x, y, 0x000000);
 			ay++;
 		}
 		ax++;
