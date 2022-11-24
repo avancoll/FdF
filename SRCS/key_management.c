@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:25:51 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/24 17:07:52 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:40:56 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ int	key_pressed(int keycode, t_data *data)
 		data->key->angle_C_up = 1;
 	if (keycode == KEY_E)
 		data->key->angle_C_down = 1;
+	if (keycode == KEY_PLUS)
+		data->key->height_up = 1;
+	if (keycode == KEY_MINUS)
+		data->key->height_down = 1;
+	if (keycode == KEY_Z)
+		data->key->zoom_up = 1;
+	if (keycode == KEY_X)
+		data->key->zoom_down = 1;
 	return (0);
 }
 
@@ -70,6 +78,14 @@ int	key_released(int keycode, t_data *data)
 		data->key->angle_C_up = 0;
 	if (keycode == KEY_E)
 		data->key->angle_C_down = 0;
+	if (keycode == KEY_PLUS)
+		data->key->height_up = 0;
+	if (keycode == KEY_MINUS)
+		data->key->height_down = 0;
+	if (keycode == KEY_Z)
+		data->key->zoom_up = 0;
+	if (keycode == KEY_X)
+		data->key->zoom_down = 0;
 	return (0);
 }
 
@@ -95,6 +111,14 @@ int	exec_move(t_data *data)
 		data->key->C += 1;
 	if (data->key->angle_C_down == 1)
 		data->key->C -= 1;
+	if (data->key->height_up == 1)
+		data->key->height += 5;
+	if (data->key->height_down == 1)
+		data->key->height -= 5;
+	if (data->key->zoom_up == 1)
+		data->key->zoom += 1;
+	if (data->key->zoom_down == 1)
+		data->key->zoom -= 1;
 	draw_map(data, 0);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 	draw_map(data, 1);

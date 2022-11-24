@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/22 17:39:18 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:18:19 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ int	ft_atoi(const char *str, int *i)
 
 	res = 0;
 	sign = 1;
-	while (str[*i] == 32)
+	while (str[*i] == ' ')
 		(*i)++;
-	if (str[*i] == '-' || str[*i] == '+')
-		if (str[*i++] == '-')
-			sign = -sign;
-	while (str[*i] == '0')
+	if (str[*i] == '-')
+	{
 		(*i)++;
+		sign = -sign;
+	}
 	while (str[*i] && str[*i] >= '0' && str[*i] <= '9')
 		res = res * 10 + str[(*i)++] - 48;
 	return (res * sign);
@@ -89,7 +89,6 @@ int	**ft_free_int(int **xyz, int x)
 		x--;
 	}
 	free(xyz);
-	printf("FREEEE\n");
 	return (0);
 }
 

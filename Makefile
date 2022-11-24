@@ -6,7 +6,7 @@
 #    By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:14:18 by avancoll          #+#    #+#              #
-#    Updated: 2022/11/24 17:23:31 by avancoll         ###   ########.fr        #
+#    Updated: 2022/11/24 17:30:37 by avancoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ RM			= rm -f
 
 $(NAME):	$(OBJS)
 	ar -rc $(NAME) $(OBJS)
-	$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME) -o $(EXEC) -lm
+	$(CC) -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g $(NAME) -o $(EXEC) -lm
 
 all:	$(NAME)
 

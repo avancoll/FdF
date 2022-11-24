@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/24 16:45:20 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:34:00 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,23 @@ enum {
 	KEY_LEFT = 123,
 	KEY_RIGHT = 124,
 	KEY_DOWN = 125,
-	KEY_UP = 126
+	KEY_UP = 126,
+	KEY_Z = 6,
+	KEY_X = 7,
+	KEY_PAD0 = 82,
+	KEY_PAD1 = 83,
+	KEY_PAD2 = 84,
+	KEY_PAD3 = 85,
+	KEY_PAD4 = 86,
+	KEY_PAD5 = 87,
+	KEY_PAD6 = 88,
+	KEY_PAD7 = 89,
+	KEY_PAD8 = 91,
+	KEY_PAD9 = 92,
+	KEY_MINUS = 27,
+	KEY_MINUSPAD = 78,
+	KEY_PLUS = 24,
+	KEY_PLUSPAD = 69
 };
 
 enum {
@@ -85,6 +101,12 @@ typedef struct s_key
 	int		angle_B_down;
 	int		angle_C_up;
 	int		angle_C_down;
+	int		height;
+	int		zoom;
+	int		height_up;
+	int		height_down;
+	int		zoom_up;
+	int		zoom_down;
 }				t_key;
 
 typedef struct s_data

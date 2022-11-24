@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/24 17:27:05 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:23:41 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	draw_map(t_data *data, int color)
 		ay = 0;
 		while (ay < data->coo->y_max)
 		{
-			x = (30 * ax * (cos(rad_B) * cos(rad_C))) + (30 * ay * ((sin(rad_A) * sin(rad_B) * cos(rad_C)) - (cos(rad_A) * sin(rad_C)))) + (3 * data->coo->xyz[ax][ay] * ((cos(rad_A) * sin(rad_B) * cos(rad_C)) + (sin(rad_A) * sin(rad_C)))) + data->key->offset_x;
-			y = (30 * ax * (cos(rad_B) * sin(rad_C))) + (30 * ay * ((sin(rad_A) * sin(rad_B) * sin(rad_C)) + (cos(rad_A) * cos(rad_C)))) + (3 * data->coo->xyz[ax][ay] * ((cos(rad_A) * sin(rad_B) * sin(rad_C)) - (sin(rad_A) * cos(rad_C)))) + data->key->offset_y;
+			x = (data->key->zoom * ax * (cos(rad_B) * cos(rad_C))) + (data->key->zoom * ay * ((sin(rad_A) * sin(rad_B) * cos(rad_C)) - (cos(rad_A) * sin(rad_C)))) + (data->key->height * data->coo->xyz[ax][ay] * ((cos(rad_A) * sin(rad_B) * cos(rad_C)) + (sin(rad_A) * sin(rad_C)))) + data->key->offset_x;
+			y = (data->key->zoom * ax * (cos(rad_B) * sin(rad_C))) + (data->key->zoom * ay * ((sin(rad_A) * sin(rad_B) * sin(rad_C)) + (cos(rad_A) * cos(rad_C)))) + (data->key->height * data->coo->xyz[ax][ay] * ((cos(rad_A) * sin(rad_B) * sin(rad_C)) - (sin(rad_A) * cos(rad_C)))) + data->key->offset_y;
 			if (data->coo->xyz[ax][ay] == 0 && color == 0)
 				mlx_put_pixel(data, x, y, 0x00FF0000);
 			else if (data->coo->xyz[ax][ay] != 0 && color == 0)
