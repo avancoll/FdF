@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/24 18:22:50 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:32:17 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	init_data(t_data *data)
 {
 	data->key->offset_x = SIZE_X / 2;
 	data->key->offset_y = SIZE_Y / 3;
-	data->key->A = 35;
-	data->key->B = 150;
-	data->key->C = -45;
+	data->key->a = 35;
+	data->key->b = 150;
+	data->key->c = -45;
 	data->key->height = 10;
 	data->key->zoom = 30;
 }
@@ -38,10 +38,10 @@ int	malloc_data(t_data *data)
 {
 	data->key = malloc(sizeof(t_key));
 	if (!data->key)
-		return (-1);
+		return (1);
 	data->coo = malloc(sizeof(t_coo));
 	if (!data->coo)
-		return (-1);
+		return (1);
 	return (0);
 }
 
@@ -49,12 +49,17 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_list	*map;
+	int		check;
 
 	if (argc != 2)
-		return (0);
-	malloc_data(&data);
+		return (1);
+	check = malloc_data(&data);
+	if (check == 1)
+		return (1);
 	map = list_creator(argv[1]);
-	data.coo = list_to_int(map);
+	if (!map)
+		return (0);
+	data.coo = list_to_int(map, data.coo);
 	init_data(&data);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, SIZE_X, SIZE_Y, "fdf");

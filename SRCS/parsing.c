@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/24 18:18:19 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:33:34 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,21 @@ t_list	*list_creator(char *argv)
 	t_list	*map;
 
 	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
 	line = get_next_line(fd);
+	if (!line)
+		return (NULL);
 	map = ft_lstnew(line);
+	if (!map)
+		return (map);
 	map->y = int_counter(line);
 	while (line)
 	{
-		line = get_next_line(fd); //attention protection
+		line = get_next_line(fd);
 		new = ft_lstnew(line);
+		if (!new)
+			return (NULL);
 		ft_lstadd_back(&map, new);
 	}
 	map->x = ft_lstsize(map) - 1;
@@ -92,14 +100,12 @@ int	**ft_free_int(int **xyz, int x)
 	return (0);
 }
 
-t_coo	*list_to_int(t_list *map)
+t_coo	*list_to_int(t_list *map, t_coo *coo)
 {
-	t_coo	*coo;
 	int		i;
 	int		x;
 	int		y;
 
-	coo = malloc(sizeof(t_coo));
 	x = 0;
 	coo->x_max = map->x;
 	coo->y_max = map->y;
@@ -110,7 +116,7 @@ t_coo	*list_to_int(t_list *map)
 	{
 		coo->xyz[x] = malloc(sizeof(int) * coo->y_max); //proetect
 		// if (!coo->xyz[x])
-		// 	return (ft_free_int(coo->xyz, x));
+		//  	return (ft_free_int(coo->xyz, x));
 		i = 0;
 		y = 0;
 		while (y < coo->y_max)

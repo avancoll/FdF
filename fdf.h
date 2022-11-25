@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/24 18:34:00 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:31:54 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,15 @@ typedef struct s_key
 	int		mv_down;
 	int		mv_left;
 	int		mv_right;
-	float	A;
-	float	B;
-	float	C;
-	int		angle_A_up;
-	int		angle_A_down;
-	int		angle_B_up;
-	int		angle_B_down;
-	int		angle_C_up;
-	int		angle_C_down;
+	float	a;
+	float	b;
+	float	c;
+	int		angle_a_up;
+	int		angle_a_down;
+	int		angle_b_up;
+	int		angle_b_down;
+	int		angle_c_up;
+	int		angle_c_down;
 	int		height;
 	int		zoom;
 	int		height_up;
@@ -111,15 +111,15 @@ typedef struct s_key
 
 typedef struct s_data
 {
-	struct s_coo *coo;
-	struct s_key *key;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*addr;
-	int		bits_pixel;
-	int		size_line;
-	int		endian;
+	struct s_coo	*coo;
+	struct s_key	*key;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*img_ptr;
+	char			*addr;
+	int				bits_pixel;
+	int				size_line;
+	int				endian;
 }				t_data;
 
 char	*ft_free(char *s1, char *s2);
@@ -139,7 +139,7 @@ int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
 void	draw_map(t_data *data, int color);
 t_list	*list_creator(char *argv);
-t_coo	*list_to_int(t_list *map);
+t_coo	*list_to_int(t_list *map, t_coo *coo);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
