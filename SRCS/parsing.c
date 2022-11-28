@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/28 16:41:15 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:56:18 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ t_list	*list_creator(char *argv)
 	while (line)
 	{
 		line = get_next_line(fd);
-		if (strcmp(line, ""))
-		{
-			printf("OUI\n");
-		}
 		new = ft_lstnew(line);
 		if (!new)
 			return (NULL);

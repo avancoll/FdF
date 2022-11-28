@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:37:08 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/28 16:36:31 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:56:02 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,27 @@ char	*ft_read(int fd, char *save)
 	return (save);
 }
 
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*dst;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	dst = malloc(sizeof(char) * (i + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		dst[i] = s1[i];
+		i++;
+	}
+	dst[i] = 0;
+	return (dst);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*save;
@@ -102,7 +123,5 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (ft_free(save, NULL));
 	save = ft_after_line(save);
-	if (!line)
-		line = strdup("");
 	return (line);
 }
