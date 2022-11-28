@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:37:08 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/08 15:46:26 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:36:31 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,7 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (ft_free(save, NULL));
 	save = ft_after_line(save);
+	if (!line)
+		line = strdup("");
 	return (line);
 }

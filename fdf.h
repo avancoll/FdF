@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/25 16:31:54 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:34:02 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_data
 {
 	struct s_coo	*coo;
 	struct s_key	*key;
+	struct s_list	*map;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

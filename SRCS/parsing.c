@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/25 16:33:34 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:41:15 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	int_counter(char *s)
 
 	count = 0;
 	i = 0;
-	if (!s)
-		return (0);
 	while (s[i])
 	{
 		is_digit = 0;
@@ -44,22 +42,22 @@ t_list	*list_creator(char *argv)
 {
 	int		fd;
 	char	*line;
-	t_list	*new;
 	t_list	*map;
+	t_list	*new;
 
 	fd = open(argv, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
 	line = get_next_line(fd);
-	if (!line)
-		return (NULL);
 	map = ft_lstnew(line);
-	if (!map)
-		return (map);
+	if (!line || !map)
+		return (NULL);
 	map->y = int_counter(line);
 	while (line)
 	{
 		line = get_next_line(fd);
+		if (strcmp(line, ""))
+		{
+			printf("OUI\n");
+		}
 		new = ft_lstnew(line);
 		if (!new)
 			return (NULL);
