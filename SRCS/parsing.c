@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/28 16:56:18 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:41:28 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ int	int_counter(char *s)
 			is_digit = 1;
 			i++;
 		}
+		if (s[i] && s[i] == ',')
+			i += 9;
 		while (s[i] && s[i] == ' ')
 			i++;
-		if (s[i] == '\n')
+		if (s[i] && s[i] != '-' && (s[i] < '0' || s[i] > '9'))
 			break ;
 	}
 	return (count);
@@ -54,6 +56,8 @@ t_list	*list_creator(char *argv)
 	while (line)
 	{
 		line = get_next_line(fd);
+		if (line && map->y != int_counter(line))
+			return (NULL);
 		new = ft_lstnew(line);
 		if (!new)
 			return (NULL);
@@ -71,6 +75,8 @@ int	ft_atoi(const char *str, int *i)
 
 	res = 0;
 	sign = 1;
+	if (str[*i] && str[*i] == ',')
+			(*i) += 9;
 	while (str[*i] == ' ')
 		(*i)++;
 	if (str[*i] == '-')
@@ -103,7 +109,7 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 	x = 0;
 	coo->x_max = map->x;
 	coo->y_max = map->y;
-	coo->xyz = malloc(sizeof(*coo->xyz) * coo->x_max); //attention protect
+	coo->xyz = malloc(sizeof(*coo->xyz) * coo->x_max);
 	if (!coo->xyz)
 		return (0);
 	while (x < coo->x_max)
@@ -116,8 +122,10 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 		while (y < coo->y_max)
 		{
 			coo->xyz[x][y] = ft_atoi(map->content, &i);
+			printf("%d ", coo->xyz[x][y]);
 			y++;
 		}
+		printf("\n");
 		map = map->next;
 		x++;
 	}
