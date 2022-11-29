@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/25 15:47:59 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:14:29 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,65 @@
 
 // }
 
+float	x_calc(t_coo *coo, t_key *key, int ax, int ay)
+{
+	float	x;
+	float	a;
+	float	b;
+	float	c;
+
+	a = key->a * M_PI / 180;
+	b = key->b * M_PI / 180;
+	c = key->c * M_PI / 180;
+	x = key->zoom * ax * (cos(b) * cos(c));
+	x += key->zoom * ay * (sin(a) * sin(b) * cos(c) - cos(a) * sin(c));
+	x += key->h * coo->z[ax][ay] * (cos(a) * sin(b) * cos(c) + sin(a) * sin(c));
+	x += key->offset_x;
+	return (x);
+}
+
+float	y_calc(t_coo *coo, t_key *key, int ax, int ay)
+{
+	float	y;
+	float	a;
+	float	b;
+	float	c;
+
+	a = key->a * M_PI / 180;
+	b = key->b * M_PI / 180;
+	c = key->c * M_PI / 180;
+	y = key->zoom * ax * (cos(b) * sin(c));
+	y += key->zoom * ay * (sin(a) * sin(b) * sin(c) + cos(a) * cos(c));
+	y += key->h * coo->z[ax][ay] * (cos(a) * sin(b) * sin(c) - sin(a) * cos(c));
+	y += key->offset_y;
+	return (y);
+}
+
 void	draw_map(t_data *data, int color)
 {
 	float	x;
 	float	y;
-	float	rad_a;
-	float	rad_b;
-	float	rad_c;
 	int		ax;
 	int		ay;
 
 	x = 0;
 	y = 0;
-	ax = 0;
-	ay = 0;
-	rad_a = data->key->a * M_PI / 180;
-	rad_b = data->key->b * M_PI / 180;
-	rad_c = data->key->c * M_PI / 180;
-	while (ax < data->coo->x_max)
+	ax = -1;
+	while (++ax < data->coo->x_max)
 	{
-		ay = 0;
-		while (ay < data->coo->y_max)
+		ay = -1;
+		while (++ay < data->coo->y_max)
 		{
-			x = (data->key->zoom * ax * (cos(rad_b) * cos(rad_c))) + (data->key->zoom * ay * ((sin(rad_a) * sin(rad_b) * cos(rad_c)) - (cos(rad_a) * sin(rad_c)))) + (data->key->height * data->coo->xyz[ax][ay] * ((cos(rad_a) * sin(rad_b) * cos(rad_c)) + (sin(rad_a) * sin(rad_c)))) + data->key->offset_x;
-			y = (data->key->zoom * ax * (cos(rad_b) * sin(rad_c))) + (data->key->zoom * ay * ((sin(rad_a) * sin(rad_b) * sin(rad_c)) + (cos(rad_a) * cos(rad_c)))) + (data->key->height * data->coo->xyz[ax][ay] * ((cos(rad_a) * sin(rad_b) * sin(rad_c)) - (sin(rad_a) * cos(rad_c)))) + data->key->offset_y;
-			if (data->coo->xyz[ax][ay] == 0 && color == 0)
+			x = x_calc(data->coo, data->key, ax, ay);
+			y = y_calc(data->coo, data->key, ax, ay);
+			if (data->coo->z[ax][ay] == 0 && color == 0)
 				mlx_put_pixel(data, x, y, 0x00FF0000);
-			else if (data->coo->xyz[ax][ay] != 0 && color == 0)
+			else if (data->coo->z[ax][ay] != 0 && color == 0)
 				mlx_put_pixel(data, x, y, 0x00ff1e);
-			else if (data->coo->xyz[ax][ay] == 0 && color == 1)
+			else if (data->coo->z[ax][ay] == 0 && color == 1)
 				mlx_put_pixel(data, x, y, 0x000000);
-			else if (data->coo->xyz[ax][ay] != 0 && color == 1)
+			else if (data->coo->z[ax][ay] != 0 && color == 1)
 				mlx_put_pixel(data, x, y, 0x000000);
-			ay++;
 		}
-		ax++;
 	}
 }

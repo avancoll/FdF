@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/28 15:34:02 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:05:53 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_list
 
 typedef struct s_coo
 {
-	int	**xyz;
+	int	**z;
 	int	x_max;
 	int	y_max;
 }				t_coo;
@@ -101,10 +101,10 @@ typedef struct s_key
 	int		angle_b_down;
 	int		angle_c_up;
 	int		angle_c_down;
-	int		height;
+	int		h;
 	int		zoom;
-	int		height_up;
-	int		height_down;
+	int		h_up;
+	int		h_down;
 	int		zoom_up;
 	int		zoom_down;
 }				t_key;

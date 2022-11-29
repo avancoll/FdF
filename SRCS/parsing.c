@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/29 14:41:28 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:05:37 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,12 @@ int	ft_atoi(const char *str, int *i)
 	return (res * sign);
 }
 
-int	**ft_free_int(int **xyz, int x)
+t_coo	*ft_free_int(int **z, int x)
 {
 	while (x >= 0)
-	{
-		free(xyz[x]);
-		x--;
-	}
-	free(xyz);
-	return (0);
+		free(z[x--]);
+	free(z);
+	return (NULL);
 }
 
 t_coo	*list_to_int(t_list *map, t_coo *coo)
@@ -106,28 +103,22 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 	int		x;
 	int		y;
 
-	x = 0;
 	coo->x_max = map->x;
 	coo->y_max = map->y;
-	coo->xyz = malloc(sizeof(*coo->xyz) * coo->x_max);
-	if (!coo->xyz)
-		return (0);
-	while (x < coo->x_max)
+	coo->z = malloc(sizeof(*coo->z) * coo->x_max);
+	if (!coo->z)
+		return (NULL);
+	x = -1;
+	while (++x < coo->x_max)
 	{
-		coo->xyz[x] = malloc(sizeof(int) * coo->y_max); //proetect
-		// if (!coo->xyz[x])
-		//  	return (ft_free_int(coo->xyz, x));
+		coo->z[x] = malloc(sizeof(int) * coo->y_max);
+		if (!coo->z[x])
+			return (ft_free_int(coo->z, x));
 		i = 0;
-		y = 0;
-		while (y < coo->y_max)
-		{
-			coo->xyz[x][y] = ft_atoi(map->content, &i);
-			printf("%d ", coo->xyz[x][y]);
-			y++;
-		}
-		printf("\n");
+		y = -1;
+		while (++y < coo->y_max)
+			coo->z[x][y] = ft_atoi(map->content, &i);
 		map = map->next;
-		x++;
 	}
 	return (coo);
 }
