@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/29 17:01:19 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:49:58 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ int	malloc_data(t_data *data)
 		return (0);
 	return (1);
 }
+void	test1(t_data *data)
+{
+	int	x = 0;
+	int	y = 0;
+	int	start_x = 1920 / 2;
+	int	start_y = 1080 / 2;
+	while (x < 1919)
+	{
+		draw_line1(data, start_x, start_y, x, y);
+		draw_line2(data, start_x, start_y, x, y);
+		draw_line3(data, start_x, start_y, x, y);
+		draw_line4(data, start_x, start_y, x, y);
+		x++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -70,6 +85,7 @@ int	main(int argc, char **argv)
 	data.img_ptr = mlx_new_image(data.mlx_ptr, SIZE_X, SIZE_Y);
 	data.addr = mlx_get_data_addr(data.img_ptr, &data.bits_pixel,
 			&data.size_line, &data.endian);
+	test1(&data);
 	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
 	mlx_hook(data.win_ptr, ON_KEYUP, 0, key_released, &data);
 	mlx_hook(data.win_ptr, ON_KEYDOWN, 0, key_pressed, &data);
