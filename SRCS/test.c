@@ -55,3 +55,139 @@ void	draw_line(t_data *data)
 			test4(map, dx, dy);
 	}
 }
+void	case1(t_data *data, int dx, int dy)
+{
+	int	p;
+
+	p = 2 * (dy - dx);
+	if (y0 < 1080 && x0 < 1920
+		&& x0 > -1 && y0 > -1)
+		dr_pixel(data->img, x0, y0, data->ci->color);
+	while (x0 <= x1 && y0 <= y1)
+	{
+		if (p < 0)
+		{
+			p = p + (2 * dy);
+			x0++;
+		}
+		else if (p >= 0)
+		{
+			p = p + (2 * (dy - dx));
+			x0++;
+			y0++;
+		}
+		if (x0 <= x1 && y0 <= y1
+			&& y0 < 1080 && x0 < 1920
+			&& x0 > -1 && y0 > -1)
+			color_and_pixel(data);
+	}
+}
+
+void	case2(t_data *data, int dx, int dy)
+{
+	int	p;
+
+	p = 2 * (dx - dy);
+	if (y0 < 1080 && x0 < 1920
+		&& x0 > -1 && y0 > -1)
+		dr_pixel(data->img, x0, y0, data->ci->color);
+	while (x0 <= x1 && y0 <= y1)
+	{
+		if (p <= 0)
+		{
+			p = p + (2 * dx);
+			y0++;
+		}
+		else if (p > 0)
+		{
+			p = p + (2 * (dx - dy));
+			x0++;
+			y0++;
+		}
+		if (x0 <= x1 && y0 <= y1
+			&& y0 < 1080 && x0 < 1920
+			&& x0 > -1 && y0 > -1)
+			color_and_pixel(data);
+	}
+}
+
+void	case3(t_data *data, int dx, int dy)
+{
+	int	p;
+
+	p = 2 * (dy - dx);
+	if (y0 < 1080 && x0 < 1920
+		&& x0 > -1 && y0 > -1)
+		dr_pixel(data->img, x0, y0, data->ci->color);
+	while (x1 <= x0 && y1 >= y0)
+	{
+		if (p <= 0)
+		{
+			p = p + (2 * dy);
+			x0--;
+		}
+		else if (p > 0)
+		{
+			p = p + (2 * (dy - dx));
+			x0--;
+			y0++;
+		}
+		if (x1 <= x0 && y1 >= y0
+			&& y0 < 1080 && x0 < 1920
+			&& x0 > -1 && y0 > -1)
+			color_and_pixel(data);
+	}
+}
+
+void	case4(t_data *data, int dx, int dy)
+{
+	int	p;
+
+	p = 2 * (dx - dy);
+	if (y0 < 1080 && x0 < 1920
+		&& x0 > -1 && y0 > -1)
+		dr_pixel(data->img, x0, y0, data->ci->color);
+	while (x1 <= x0 && y1 >= y0)
+	{
+		if (p < 0)
+		{
+			p = p + (2 * dx);
+			y0++;
+		}
+		else if (p >= 0)
+		{
+			p = p + (2 * (dx - dy));
+			x0--;
+			y0++;
+		}
+		if (x1 <= x0 && y1 >= y0
+			&& y0 < 1080 && x0 < 1920
+			&& x0 > -1 && y0 > -1)
+			color_and_pixel(data);
+	}
+}
+
+void	dr_line(t_data *data, int event)
+{
+	t_color	c;
+	int		dx;
+	int		dy;
+
+	c.event = event;
+	ft_swap(data);
+	find_delta(data, &dy, &dx);
+	set_color(data, 0, &c);
+	if (x1 >= x0)
+	{
+		if (dx >= dy)
+			case1(data, dx, dy, &c);
+		else if (dx < dy)
+			case2(data, dx, dy, &c);
+	}
+	else if (x1 < x0)
+	{
+		if (dx > dy)
+			case3(data, dx, dy, &c);
+		else if (dx <= dy)
+			case4(data, dx, dy, &c);
+	}
