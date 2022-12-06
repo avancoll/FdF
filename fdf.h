@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/05 16:44:09 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:26:34 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ void	draw_line1(t_data *data, int x0, int y0, int x1, int y1);
 void	draw_line2(t_data *data, int x0, int y0, int x1, int y1);
 void	draw_line3(t_data *data, int x0, int y0, int x1, int y1);
 void	draw_line4(t_data *data, int x0, int y0, int x1, int y1);
-
+void	bresenham(t_data *data, int x0, int y0, int x1, int y1);
+void	test(t_data *data);
 #endif
