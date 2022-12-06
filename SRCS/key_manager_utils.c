@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:19:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/06 17:27:39 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:00:58 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exec_move2(t_data *data)
 		data->key->h -= 5;
 	if (data->key->zoom_up == 1)
 		data->key->zoom += 1;
-	if (data->key->zoom_down == 1)
+	if (data->key->zoom_down == 1 && data->key->zoom >= 3)
 		data->key->zoom -= 1;
 	return (0);
 }

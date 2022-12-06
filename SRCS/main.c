@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/06 17:26:53 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:37:32 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_data(t_data *data)
 	data->key->b = 150;
 	data->key->c = -45;
 	data->key->h = 10;
-	data->key->zoom = 30;
+	data->key->zoom = 10;
 }
 
 int	malloc_data(t_data *data)
