@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/06 17:52:37 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:31:28 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_key
 	int		angle_b_down;
 	int		angle_c_up;
 	int		angle_c_down;
-	int		h;
+	float	h;
 	int		zoom;
 	int		h_up;
 	int		h_down;
@@ -153,5 +153,5 @@ void	draw_line2(t_data *data, int x0, int y0, int x1, int y1, int color);
 void	draw_line3(t_data *data, int x0, int y0, int x1, int y1, int color);
 void	draw_line4(t_data *data, int x0, int y0, int x1, int y1, int color);
 void	bresenham(t_data *data, int x0, int y0, int x1, int y1, int color);
-void	test(t_data *data);
+
 #endif

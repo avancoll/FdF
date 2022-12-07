@@ -6,7 +6,7 @@
 #    By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:14:18 by avancoll          #+#    #+#              #
-#    Updated: 2022/12/06 17:21:44 by avancoll         ###   ########.fr        #
+#    Updated: 2022/12/07 15:10:19 by avancoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS		= $(SRCS:.c=.o)
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -O3 -O2 -Os
 
 RM			= rm -f
 
