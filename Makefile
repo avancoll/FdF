@@ -6,7 +6,7 @@
 #    By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:14:18 by avancoll          #+#    #+#              #
-#    Updated: 2022/12/07 15:10:19 by avancoll         ###   ########.fr        #
+#    Updated: 2022/12/07 16:32:59 by avancoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS		=	SRCS/main.c\
 				SRCS/get_next_line_utils.c\
 				SRCS/parsing.c\
 				SRCS/lst_map.c\
-				SRCS/drawmap.c\
+				SRCS/draw_map.c\
+				SRCS/draw_line.c
 
 OBJS		= $(SRCS:.c=.o)
 
