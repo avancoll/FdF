@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 15:06:33 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:07:46 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int	malloc_data(t_data *data)
 		return (0);
 	data->map = malloc(sizeof(t_list));
 	if (!data->map)
+		return (0);
+	data->draw = malloc(sizeof(t_draw));
+	if (!data->draw)
 		return (0);
 	return (1);
 }

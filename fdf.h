@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 15:31:28 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:15:52 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,20 @@ typedef struct s_key
 	int		zoom_down;
 }				t_key;
 
+typedef struct s_draw
+{
+	float	x0;
+	float	y0;
+	float	x1;
+	float	y1;
+}				t_draw;
+
 typedef struct s_data
 {
 	struct s_coo	*coo;
 	struct s_key	*key;
 	struct s_list	*map;
+	struct s_draw	*draw;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
@@ -138,8 +147,8 @@ int		ft_close(t_data *data);
 int		key_pressed(int keycode, t_data *data);
 int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
-void	draw_map(t_data *data, int color);
-void	draw_map2(t_data *data, int color);
+void	draw_map(t_data *data, t_draw *draw, int color);
+void	draw_map2(t_data *data, t_draw *draw, int color);
 t_list	*list_creator(char *argv);
 t_coo	*list_to_int(t_list *map, t_coo *coo);
 
@@ -148,10 +157,10 @@ t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 
-void	draw_line1(t_data *data, int x0, int y0, int x1, int y1, int color);
-void	draw_line2(t_data *data, int x0, int y0, int x1, int y1, int color);
-void	draw_line3(t_data *data, int x0, int y0, int x1, int y1, int color);
-void	draw_line4(t_data *data, int x0, int y0, int x1, int y1, int color);
-void	bresenham(t_data *data, int x0, int y0, int x1, int y1, int color);
+void	draw_line1(t_data *data, t_draw *draw, int color);
+void	draw_line2(t_data *data, t_draw *draw, int color);
+void	draw_line3(t_data *data, t_draw *draw, int color);
+void	draw_line4(t_data *data, t_draw *draw, int color);
+void	bresenham(t_data *data, t_draw *draw, int color);
 
 #endif

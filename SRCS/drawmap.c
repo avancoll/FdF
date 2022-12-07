@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 15:29:35 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:28:26 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ float	y_calc(t_coo *coo, t_key *key, int ax, int ay)
 	return (y);
 }
 
-void	draw_line1(t_data *data, int x0, int y0, int x1, int y1, int color)
+void	draw_line1(t_data *data, t_draw *draw, int color)
 {
 	int	p;
 	int	dx;
@@ -61,29 +61,27 @@ void	draw_line1(t_data *data, int x0, int y0, int x1, int y1, int color)
 	int	x;
 	int	y;
 
-	x = x0;
-	y = y0;
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
+	x = draw->x0;
+	y = draw->y0;
+	dx = fabsf(draw->x1 - draw->x0);
+	dy = fabsf(draw->y1 - draw->y0);
 	p = 2 * (dy - dx);
-	while (x <= x1 && y <= y1)
+	while (x <= draw->x1 && y <= draw->y1)
 	{
 		if (p < 0)
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x++, y, color);
 			p += 2 * dy;
 		}
 		else
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x++, y++, color);
 			p += 2 * (dy - dx);
-			y++;
 		}
-		x++;
 	}
 }
 
-void	draw_line2(t_data *data, int x0, int y0, int x1, int y1, int color)
+void	draw_line2(t_data *data, t_draw *draw, int color)
 {
 	int	p;
 	int	dx;
@@ -91,29 +89,27 @@ void	draw_line2(t_data *data, int x0, int y0, int x1, int y1, int color)
 	int	x;
 	int	y;
 
-	x = x0;
-	y = y0;
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
+	x = draw->x0;
+	y = draw->y0;
+	dx = fabsf(draw->x1 - draw->x0);
+	dy = fabsf(draw->y1 - draw->y0);
 	p = 2 * (dx - dy);
-	while (x <= x1 && y <= y1)
+	while (x <= draw->x1 && y <= draw->y1)
 	{
 		if (p <= 0)
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x, y++, color);
 			p += 2 * dx;
 		}
 		else
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x++, y++, color);
 			p += 2 * (dx - dy);
-			x++;
 		}
-		y++;
 	}
 }
 
-void	draw_line3(t_data *data, int x0, int y0, int x1, int y1, int color)
+void	draw_line3(t_data *data, t_draw *draw, int color)
 {
 	int	p;
 	int	dx;
@@ -121,29 +117,27 @@ void	draw_line3(t_data *data, int x0, int y0, int x1, int y1, int color)
 	int	x;
 	int	y;
 
-	x = x0;
-	y = y0;
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
+	x = draw->x0;
+	y = draw->y0;
+	dx = fabsf(draw->x1 - draw->x0);
+	dy = fabsf(draw->y1 - draw->y0);
 	p = 2 * (dy - dx);
-	while (x1 <= x && y1 >= y)
+	while (draw->x1 <= x && draw->y1 >= y)
 	{
 		if (p <= 0)
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x--, y, color);
 			p += 2 * dy;
 		}
 		else
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x--, y++, color);
 			p += 2 * (dy - dx);
-			y++;
 		}
-		x--;
 	}
 }
 
-void	draw_line4(t_data *data, int x0, int y0, int x1, int y1, int color)
+void	draw_line4(t_data *data, t_draw *draw, int color)
 {
 	int	p;
 	int	dx;
@@ -151,73 +145,67 @@ void	draw_line4(t_data *data, int x0, int y0, int x1, int y1, int color)
 	int	x;
 	int	y;
 
-	x = x0;
-	y = y0;
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
+	x = draw->x0;
+	y = draw->y0;
+	dx = fabsf(draw->x1 - draw->x0);
+	dy = fabsf(draw->y1 - draw->y0);
 	p = 2 * (dx - dy);
-	while (x1 <= x && y1 >= y)
+	while (draw->x1 <= x && draw->y1 >= y)
 	{
 		if (p < 0)
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x, y++, color);
 			p += 2 * dx;
 		}
 		else
 		{
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data, x--, y++, color);
 			p += 2 * (dx - dy);
-			x--;
 		}
-		y++;
 	}
 }
 
-void	ft_swap(int *x0, int *y0, int *x1, int *y1)
+void	ft_swap(t_draw *draw)
 {
 	int	temp;
 
-	if (*y0 > *y1)
+	if (draw->y0 > draw->y1)
 	{
-		temp = *x0;
-		*x0 = *x1;
-		*x1 = temp;
-		temp = *y0;
-		*y0 = *y1;
-		*y1 = temp;
+		temp = draw->x0;
+		draw->x0 = draw->x1;
+		draw->x1 = temp;
+		temp = draw->y0;
+		draw->y0 = draw->y1;
+		draw->y1 = temp;
 	}
 }
 
-void	bresenham(t_data *data, int x0, int y0, int x1, int y1, int color)
+void	bresenham(t_data *data, t_draw *draw, int color)
 {
 	int		dx;
 	int		dy;
 
-	ft_swap(&x0, &y0, &x1, &y1);
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
-	if (x1 >= x0)
+	ft_swap(draw);
+	dx = fabsf(draw->x1 - draw->x0);
+	dy = fabsf(draw->y1 - draw->y0);
+	if (draw->x1 >= draw->x0)
 	{
 		if (dx >= dy)
-			draw_line1(data, x0, y0, x1, y1, color);
+			draw_line1(data, draw, color);
 		else
-			draw_line2(data, x0, y0, x1, y1, color);
+			draw_line2(data, draw, color);
 	}
 	else
 	{
 		if (dx > dy)
-			draw_line3(data, x0, y0, x1, y1, color);
+			draw_line3(data, draw, color);
 		else
-			draw_line4(data, x0, y0, x1, y1, color);
+			draw_line4(data, draw, color);
 	}
 }
 
-void	draw_map2(t_data *data, int color)
+void	draw_map2(t_data *data, t_draw *draw, int color)
 {
-	float	x0;
-	float	y0;
-	float	x1;
-	float	y1;
 	int		ax;
 	int		ay;
 
@@ -227,25 +215,21 @@ void	draw_map2(t_data *data, int color)
 		ax = 0;
 		while (ax < data->coo->x_max - 1)
 		{
-			x0 = x_calc(data->coo, data->key, ax, ay);
-			y0 = y_calc(data->coo, data->key, ax, ay);
-			x1 = x_calc(data->coo, data->key, ++ax, ay);
-			y1 = y_calc(data->coo, data->key, ax, ay);
+			draw->x0 = x_calc(data->coo, data->key, ax, ay);
+			draw->y0 = y_calc(data->coo, data->key, ax, ay);
+			draw->x1 = x_calc(data->coo, data->key, ++ax, ay);
+			draw->y1 = y_calc(data->coo, data->key, ax, ay);
 			if (color == 0)
-				bresenham(data, x0, y0, x1, y1, 0x00FF0000);
+				bresenham(data, draw, 0x00FF0000);
 			else if (color == 1)
-				bresenham(data, x0, y0, x1, y1, 0x000000);
+				bresenham(data, draw, 0x000000);
 		}
 		ay++;
 	}
 }
 
-void	draw_map(t_data *data, int color)
+void	draw_map(t_data *data, t_draw *draw, int color)
 {
-	float	x0;
-	float	y0;
-	float	x1;
-	float	y1;
 	int		ax;
 	int		ay;
 
@@ -255,16 +239,16 @@ void	draw_map(t_data *data, int color)
 		ay = 0;
 		while (ay < data->coo->y_max - 1)
 		{
-			x0 = x_calc(data->coo, data->key, ax, ay);
-			y0 = y_calc(data->coo, data->key, ax, ay);
-			x1 = x_calc(data->coo, data->key, ax, ++ay);
-			y1 = y_calc(data->coo, data->key, ax, ay);
+			draw->x0 = x_calc(data->coo, data->key, ax, ay);
+			draw->y0 = y_calc(data->coo, data->key, ax, ay);
+			draw->x1 = x_calc(data->coo, data->key, ax, ++ay);
+			draw->y1 = y_calc(data->coo, data->key, ax, ay);
 			if (color == 0)
-				bresenham(data, x0, y0, x1, y1, 0x00FF0000);
+				bresenham(data, draw, 0x00FF0000);
 			else if (color == 1)
-				bresenham(data, x0, y0, x1, y1, 0x000000);
+				bresenham(data, draw, 0x000000);
 		}
 		ax++;
 	}
-	draw_map2(data, color);
+	draw_map2(data, draw, color);
 }
