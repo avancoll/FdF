@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 16:34:21 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:41:15 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_swap(t_draw *draw)
 	}
 }
 
-void	draw_map(t_data *data, t_draw *draw, int color)
+void	draw_map(t_data *data, int event)
 {
 	int		ax;
 	int		ay;
@@ -79,21 +79,21 @@ void	draw_map(t_data *data, t_draw *draw, int color)
 		ay = 0;
 		while (ay < data->coo->y_max - 1)
 		{
-			draw->x0 = x_calc(data->coo, data->key, ax, ay);
-			draw->y0 = y_calc(data->coo, data->key, ax, ay);
-			draw->x1 = x_calc(data->coo, data->key, ax, ++ay);
-			draw->y1 = y_calc(data->coo, data->key, ax, ay);
-			if (color == 0)
-				bresenham(data, draw, 0x00FF0000);
-			else if (color == 1)
-				bresenham(data, draw, 0x000000);
+			data->draw->x0 = x_calc(data->coo, data->key, ax, ay);
+			data->draw->y0 = y_calc(data->coo, data->key, ax, ay);
+			data->draw->x1 = x_calc(data->coo, data->key, ax, ++ay);
+			data->draw->y1 = y_calc(data->coo, data->key, ax, ay);
+			if (event == 0)
+				bresenham(data, 0x00ff00);
+			else if (event == 1)
+				bresenham(data, 0x000000);
 		}
 		ax++;
 	}
-	draw_map2(data, draw, color);
+	draw_map2(data, event);
 }
 
-void	draw_map2(t_data *data, t_draw *draw, int color)
+void	draw_map2(t_data *data, int event)
 {
 	int		ax;
 	int		ay;
@@ -104,14 +104,14 @@ void	draw_map2(t_data *data, t_draw *draw, int color)
 		ax = 0;
 		while (ax < data->coo->x_max - 1)
 		{
-			draw->x0 = x_calc(data->coo, data->key, ax, ay);
-			draw->y0 = y_calc(data->coo, data->key, ax, ay);
-			draw->x1 = x_calc(data->coo, data->key, ++ax, ay);
-			draw->y1 = y_calc(data->coo, data->key, ax, ay);
-			if (color == 0)
-				bresenham(data, draw, 0x00FF0000);
-			else if (color == 1)
-				bresenham(data, draw, 0x000000);
+			data->draw->x0 = x_calc(data->coo, data->key, ax, ay);
+			data->draw->y0 = y_calc(data->coo, data->key, ax, ay);
+			data->draw->x1 = x_calc(data->coo, data->key, ++ax, ay);
+			data->draw->y1 = y_calc(data->coo, data->key, ax, ay);
+			if (event == 0)
+				bresenham(data, 0x00ff00);
+			else if (event == 1)
+				bresenham(data, 0x000000);
 		}
 		ay++;
 	}
