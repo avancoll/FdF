@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 15:33:37 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:50:23 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_map(t_data *data, int event)
 			data->draw->x1 = x_calc(data->coo, data->key, ax, ++ay);
 			data->draw->y1 = y_calc(data->coo, data->key, ax, ay);
 			if (event == 0)
-				bresenham(data, 0x00ff00);
+				bresenham(data, data->key->color);
 			else if (event == 1)
 				bresenham(data, data->key->background_color);
 		}
@@ -104,7 +104,7 @@ void	draw_map2(t_data *data, int event)
 			data->draw->x1 = x_calc(data->coo, data->key, ++ax, ay);
 			data->draw->y1 = y_calc(data->coo, data->key, ax, ay);
 			if (event == 0)
-				bresenham(data, 0x00ff00);
+				bresenham(data, data->key->color);
 			else if (event == 1)
 				bresenham(data, data->key->background_color);
 		}

@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 15:05:03 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:42:06 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ enum {
 	KEY_UP = 126,
 	KEY_Z = 6,
 	KEY_X = 7,
-	KEY_PAD0 = 82,
 	KEY_PAD1 = 83,
 	KEY_PAD2 = 84,
 	KEY_PAD3 = 85,
@@ -111,6 +110,8 @@ typedef struct s_key
 	int		color;
 	int		background_color_check;
 	int		color_check;
+	int		reset;
+	int		parallel_view;
 }				t_key;
 
 typedef struct s_draw
@@ -153,8 +154,8 @@ int		ft_close(t_data *data);
 int		key_pressed(int keycode, t_data *data);
 int		key_released(int keycode, t_data *data);
 int		exec_move(t_data *data);
-void	draw_map(t_data *data, int color);
-void	draw_map2(t_data *data, int color);
+void	draw_map(t_data *data, int event);
+void	draw_map2(t_data *data, int event);
 t_list	*list_creator(char *argv);
 t_coo	*list_to_int(t_list *map, t_coo *coo);
 
@@ -167,7 +168,7 @@ void	draw_line1(t_data *data, int color);
 void	draw_line2(t_data *data, int color);
 void	draw_line3(t_data *data, int color);
 void	draw_line4(t_data *data, int color);
-void	bresenham(t_data *data, int event);
+void	bresenham(t_data *data, int color);
 void	ft_swap(t_draw *draw);
 void	background_filler(t_data *data, int color);
 #endif
