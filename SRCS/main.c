@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 18:10:23 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:32:47 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_data(t_data *data)
 	data->key->c = -45;
 	data->key->h = 0.5;
 	data->key->zoom = 30;
+	data->key->background_color = 0x0;
 }
 
 int	malloc_data(t_data *data)

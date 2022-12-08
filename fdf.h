@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 18:06:08 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:05:03 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ typedef struct s_key
 	int		h_down;
 	int		zoom_up;
 	int		zoom_down;
+	int		background_color;
+	int		color;
+	int		background_color_check;
+	int		color_check;
 }				t_key;
 
 typedef struct s_draw
@@ -117,7 +121,6 @@ typedef struct s_draw
 	int	y1;
 	int	dx;
 	int	dy;
-	int		color;
 }				t_draw;
 
 typedef struct s_data
@@ -166,5 +169,5 @@ void	draw_line3(t_data *data, int color);
 void	draw_line4(t_data *data, int color);
 void	bresenham(t_data *data, int event);
 void	ft_swap(t_draw *draw);
-
+void	background_filler(t_data *data, int color);
 #endif

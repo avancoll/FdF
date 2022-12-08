@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:25:51 by avancoll          #+#    #+#             */
-/*   Updated: 2022/11/29 17:01:35 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:31:54 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int	key_pressed2(int keycode, t_data *data)
 		data->key->mv_left = 1;
 	if (keycode == KEY_RIGHT)
 		data->key->mv_right = 1;
+	if (keycode == KEY_PAD0)
+		data->key->background_color_check = 1;
+	if (keycode == KEY_PAD1)
+		data->key->background_color_check = 2;
 	return (0);
 }
 
@@ -63,6 +67,8 @@ int	key_released2(int keycode, t_data *data)
 		data->key->mv_left = 0;
 	if (keycode == KEY_RIGHT)
 		data->key->mv_right = 0;
+	if (keycode == KEY_PAD0 || keycode == KEY_PAD1)
+		data->key->background_color_check = 0;
 	return (0);
 }
 

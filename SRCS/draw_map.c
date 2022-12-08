@@ -6,16 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/07 17:41:15 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:33:37 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-// void	set_color(t_data *data, int x, int y, int color)
-// {
-
-// }
 
 float	x_calc(t_coo *coo, t_key *key, int ax, int ay)
 {
@@ -86,7 +81,7 @@ void	draw_map(t_data *data, int event)
 			if (event == 0)
 				bresenham(data, 0x00ff00);
 			else if (event == 1)
-				bresenham(data, 0x000000);
+				bresenham(data, data->key->background_color);
 		}
 		ax++;
 	}
@@ -111,7 +106,7 @@ void	draw_map2(t_data *data, int event)
 			if (event == 0)
 				bresenham(data, 0x00ff00);
 			else if (event == 1)
-				bresenham(data, 0x000000);
+				bresenham(data, data->key->background_color);
 		}
 		ay++;
 	}
