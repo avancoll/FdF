@@ -6,45 +6,45 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 16:50:23 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:08:05 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-float	x_calc(t_coo *coo, t_key *key, int ax, int ay)
+float	x_calc(t_data *data)
 {
 	float	x;
 	float	a;
 	float	b;
 	float	c;
 
-	a = key->a * M_PI / 180;
-	b = key->b * M_PI / 180;
-	c = key->c * M_PI / 180;
-	x = ax * (cos(b) * cos(c));
-	x += ay * (sin(a) * sin(b) * cos(c) - cos(a) * sin(c));
-	x += key->h * coo->z[ax][ay] * (cos(a) * sin(b) * cos(c) + sin(a) * sin(c));
-	x *= key->zoom;
-	x += key->offset_x;
+	a = data->key->a * M_PI / 180;
+	b = data->key->b * M_PI / 180;
+	c = data->key->c * M_PI / 180;
+	x = data->draw->ax * (cos(b) * cos(c));
+	x += data->draw->ay * (sin(a) * sin(b) * cos(c) - cos(a) * sin(c));
+	x += data->key->h * data->coo->z[data->draw->ax][data->draw->ay] * (cos(a) * sin(b) * cos(c) + sin(a) * sin(c));
+	x *= data->key->zoom;
+	x += data->key->offset_x;
 	return (x);
 }
 
-float	y_calc(t_coo *coo, t_key *key, int ax, int ay)
+float	y_calc(t_data *data)
 {
 	float	y;
 	float	a;
 	float	b;
 	float	c;
 
-	a = key->a * M_PI / 180;
-	b = key->b * M_PI / 180;
-	c = key->c * M_PI / 180;
-	y = ax * (cos(b) * sin(c));
-	y += ay * (sin(a) * sin(b) * sin(c) + cos(a) * cos(c));
-	y += key->h * coo->z[ax][ay] * (cos(a) * sin(b) * sin(c) - sin(a) * cos(c));
-	y *= key->zoom;
-	y += key->offset_y;
+	a = data->key->a * M_PI / 180;
+	b = data->key->b * M_PI / 180;
+	c = data->key->c * M_PI / 180;
+	y = data->draw->ax * (cos(b) * sin(c));
+	y += data->draw->ay * (sin(a) * sin(b) * sin(c) + cos(a) * cos(c));
+	y += data->key->h * data->coo->z[data->draw->ax][data->draw->ay] * (cos(a) * sin(b) * sin(c) - sin(a) * cos(c));
+	y *= data->key->zoom;
+	y += data->key->offset_y;
 	return (y);
 }
 
@@ -65,49 +65,45 @@ void	ft_swap(t_draw *draw)
 
 void	draw_map(t_data *data, int event)
 {
-	int		ax;
-	int		ay;
-
-	ax = 0;
-	while (ax < data->coo->x_max)
+	data->draw->ax = 0;
+	while (data->draw->ax < data->coo->x_max)
 	{
-		ay = 0;
-		while (ay < data->coo->y_max - 1)
+		data->draw->ay = 0;
+		while (data->draw->ay < data->coo->y_max - 1)
 		{
-			data->draw->x0 = x_calc(data->coo, data->key, ax, ay);
-			data->draw->y0 = y_calc(data->coo, data->key, ax, ay);
-			data->draw->x1 = x_calc(data->coo, data->key, ax, ++ay);
-			data->draw->y1 = y_calc(data->coo, data->key, ax, ay);
+			data->draw->x0 = x_calc(data);
+			data->draw->y0 = y_calc(data);
+			data->draw->ay++;
+			data->draw->x1 = x_calc(data);
+			data->draw->y1 = y_calc(data);
 			if (event == 0)
-				bresenham(data, data->key->color);
+				bresenham(data, data->key->base_color);
 			else if (event == 1)
 				bresenham(data, data->key->background_color);
 		}
-		ax++;
+		data->draw->ax++;
 	}
 	draw_map2(data, event);
 }
 
 void	draw_map2(t_data *data, int event)
 {
-	int		ax;
-	int		ay;
-
-	ay = 0;
-	while (ay < data->coo->y_max)
+	data->draw->ay = 0;
+	while (data->draw->ay < data->coo->y_max)
 	{
-		ax = 0;
-		while (ax < data->coo->x_max - 1)
+		data->draw->ax = 0;
+		while (data->draw->ax < data->coo->x_max - 1)
 		{
-			data->draw->x0 = x_calc(data->coo, data->key, ax, ay);
-			data->draw->y0 = y_calc(data->coo, data->key, ax, ay);
-			data->draw->x1 = x_calc(data->coo, data->key, ++ax, ay);
-			data->draw->y1 = y_calc(data->coo, data->key, ax, ay);
+			data->draw->x0 = x_calc(data);
+			data->draw->y0 = y_calc(data);
+			data->draw->ax++;
+			data->draw->x1 = x_calc(data);
+			data->draw->y1 = y_calc(data);
 			if (event == 0)
-				bresenham(data, data->key->color);
+				bresenham(data, data->key->base_color);
 			else if (event == 1)
 				bresenham(data, data->key->background_color);
 		}
-		ay++;
+		data->draw->ay++;
 	}
 }

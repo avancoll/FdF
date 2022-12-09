@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 17:36:35 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:01:45 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct s_key
 	int		zoom_up;
 	int		zoom_down;
 	int		background_color;
-	int		color;
+	int		base_color;
 	int		background_color_check;
 	int		color_check;
 	int		reset;
@@ -116,12 +116,18 @@ typedef struct s_key
 
 typedef struct s_draw
 {
+	int	ax;
+	int	ay;
 	int	x0;
 	int	y0;
 	int	x1;
 	int	y1;
 	int	dx;
 	int	dy;
+	int	red;
+	int	green;
+	int	blue;
+	int	rgb;
 }				t_draw;
 
 typedef struct s_data

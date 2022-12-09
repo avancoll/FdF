@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:19:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 17:37:02 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:50:35 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	exec_move(t_data *data)
 	if (data->key->background_color_check == 3)
 		background_filler(data, 0x204099);
 	if (data->key->color_check == 1)
-		data->key->color = 0x00ff00;
+		data->key->base_color = 0x00ff00;
 	if (data->key->color_check == 2)
-		data->key->color = 0xff50ef;
+		data->key->base_color = 0xff50ef;
 	if (data->key->color_check == 3)
-		data->key->color = 0xffff00;
+		data->key->base_color = 0xffff00;
 	exec_move2(data);
 	draw_map(data, 0);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 16:54:21 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:58:18 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_data(t_data *data)
 	data->key->h = 0.5;
 	data->key->zoom = 30;
 	data->key->background_color = 0x0;
-	data->key->color = 0x00ff00;
+	data->key->base_color = 0x00ff00;
 	background_filler(data, data->key->background_color);
 }
 
@@ -52,6 +52,26 @@ int	malloc_data(t_data *data)
 	if (!data->draw)
 		return (0);
 	return (1);
+}
+
+void	color_handler(t_data *data)
+{
+	int	red = 0;
+	int	green = 255;
+	int	blue = 0;
+	int	rgb = (red * 65536) + (green * 256) + blue;
+		while (red < 255)
+		{
+			rgb = (red * 65536) + (green * 256) + blue;
+			mlx_put_pixel(data, data->draw->x0, data->draw->y0, rgb);
+			red++;
+		}
+		while (green >= 0)
+		{
+			rgb = (red * 65536) + (green * 256) + blue;
+			mlx_put_pixel(data, data->draw->x0, data->draw->y0, rgb);
+			green--;
+		}
 }
 
 int	main(int argc, char **argv)
@@ -76,6 +96,7 @@ int	main(int argc, char **argv)
 	data.addr = mlx_get_data_addr(data.img_ptr, &data.bits_pixel,
 			&data.size_line, &data.endian);
 	init_data(&data);
+	color_handler(&data);
 	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
 	mlx_hook(data.win_ptr, ON_KEYUP, 0, key_released, &data);
 	mlx_hook(data.win_ptr, ON_KEYDOWN, 0, key_pressed, &data);
