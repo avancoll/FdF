@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/09 16:58:18 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:04:52 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,39 +54,22 @@ int	malloc_data(t_data *data)
 	return (1);
 }
 
-void	color_handler(t_data *data)
-{
-	int	red = 0;
-	int	green = 255;
-	int	blue = 0;
-	int	rgb = (red * 65536) + (green * 256) + blue;
-		while (red < 255)
-		{
-			rgb = (red * 65536) + (green * 256) + blue;
-			mlx_put_pixel(data, data->draw->x0, data->draw->y0, rgb);
-			red++;
-		}
-		while (green >= 0)
-		{
-			rgb = (red * 65536) + (green * 256) + blue;
-			mlx_put_pixel(data, data->draw->x0, data->draw->y0, rgb);
-			green--;
-		}
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
 	int		check;
 
 	if (argc != 2)
-		return (1);
+		return (error_handler(1));
+	check = filename_checker(argv[1]);
+	if (!check)
+		return (2);
 	check = malloc_data(&data);
 	if (!check)
-		return (1);
+		return (2);
 	data.map = list_creator(argv[1]);
 	if (!data.map)
-		return (1);
+		return (error_handler(2));
 	data.coo = list_to_int(data.map, data.coo);
 	if (!data.coo)
 		return (1);
@@ -96,7 +79,6 @@ int	main(int argc, char **argv)
 	data.addr = mlx_get_data_addr(data.img_ptr, &data.bits_pixel,
 			&data.size_line, &data.endian);
 	init_data(&data);
-	color_handler(&data);
 	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
 	mlx_hook(data.win_ptr, ON_KEYUP, 0, key_released, &data);
 	mlx_hook(data.win_ptr, ON_KEYDOWN, 0, key_pressed, &data);

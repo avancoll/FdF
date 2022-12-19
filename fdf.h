@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/09 17:01:45 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:05:21 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ enum {
 	KEY_PAD4 = 86,
 	KEY_PAD5 = 87,
 	KEY_PAD6 = 88,
-	KEY_PAD7 = 89,
-	KEY_PAD8 = 91,
-	KEY_PAD9 = 92,
 	KEY_MINUS = 27,
-	KEY_MINUSPAD = 78,
 	KEY_PLUS = 24,
-	KEY_PLUSPAD = 69
+	KEY_R = 15,
+	KEY_P = 35,
+	KEY_TAB = 48
 };
 
 enum {
@@ -112,6 +110,7 @@ typedef struct s_key
 	int		color_check;
 	int		reset;
 	int		parallel_view;
+	int		menu;
 }				t_key;
 
 typedef struct s_draw
@@ -124,10 +123,6 @@ typedef struct s_draw
 	int	y1;
 	int	dx;
 	int	dy;
-	int	red;
-	int	green;
-	int	blue;
-	int	rgb;
 }				t_draw;
 
 typedef struct s_data
@@ -179,4 +174,7 @@ void	draw_line4(t_data *data, int color);
 void	bresenham(t_data *data, int color);
 void	ft_swap(t_draw *draw);
 void	background_filler(t_data *data, int color);
+int		error_handler(int event);
+int		filename_checker(char *str);
+
 #endif

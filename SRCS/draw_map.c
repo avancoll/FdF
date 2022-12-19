@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/09 17:08:05 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:19:36 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ float	x_calc(t_data *data)
 	c = data->key->c * M_PI / 180;
 	x = data->draw->ax * (cos(b) * cos(c));
 	x += data->draw->ay * (sin(a) * sin(b) * cos(c) - cos(a) * sin(c));
-	x += data->key->h * data->coo->z[data->draw->ax][data->draw->ay] * (cos(a) * sin(b) * cos(c) + sin(a) * sin(c));
+	x += data->key->h * data->coo->z[data->draw->ax][data->draw->ay]
+		* (cos(a) * sin(b) * cos(c) + sin(a) * sin(c));
 	x *= data->key->zoom;
 	x += data->key->offset_x;
 	return (x);
@@ -42,7 +43,8 @@ float	y_calc(t_data *data)
 	c = data->key->c * M_PI / 180;
 	y = data->draw->ax * (cos(b) * sin(c));
 	y += data->draw->ay * (sin(a) * sin(b) * sin(c) + cos(a) * cos(c));
-	y += data->key->h * data->coo->z[data->draw->ax][data->draw->ay] * (cos(a) * sin(b) * sin(c) - sin(a) * cos(c));
+	y += data->key->h * data->coo->z[data->draw->ax][data->draw->ay]
+		* (cos(a) * sin(b) * sin(c) - sin(a) * cos(c));
 	y *= data->key->zoom;
 	y += data->key->offset_y;
 	return (y);

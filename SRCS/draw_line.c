@@ -6,11 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:31:20 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 16:35:17 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:59:06 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 void	draw_line1(t_data *data, int color)
 {

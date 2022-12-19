@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/08 17:04:19 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:49:40 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	int_counter(char *s)
 			i++;
 		}
 		if (s[i] && s[i] == ',')
-			i += 9;
+			while (s[i] && s[i] != ' ')
+				i++;
 		while (s[i] && s[i] == ' ')
 			i++;
 		if (s[i] && s[i] != '-' && (s[i] < '0' || s[i] > '9'))
@@ -76,7 +77,7 @@ int	ft_atoi(const char *str, int *i)
 	res = 0;
 	sign = 1;
 	if (str[*i] && str[*i] == ',')
-		while (str[*i] != ' ')
+		while (str[*i] && str[*i] != ' ')
 			(*i)++;
 	while (str[*i] == ' ')
 		(*i)++;
