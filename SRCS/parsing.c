@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 16:49:40 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:52:16 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ t_list	*list_creator(char *argv)
 
 int	ft_atoi(const char *str, int *i)
 {
-	unsigned long long		res;
-	int						sign;
+	unsigned int		res;
+	int					sign;
 
 	res = 0;
 	sign = 1;
@@ -88,6 +88,8 @@ int	ft_atoi(const char *str, int *i)
 	}
 	while (str[*i] && str[*i] >= '0' && str[*i] <= '9')
 		res = res * 10 + str[(*i)++] - 48;
+	if (res >= INT_MAX / 8)
+		res = 0;
 	return (res * sign);
 }
 
@@ -109,7 +111,7 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 	coo->y_max = map->y;
 	coo->z = malloc(sizeof(*coo->z) * coo->x_max);
 	if (!coo->z)
-		return (NULL);
+		return (ft_free_int(0, -1));
 	x = -1;
 	while (++x < coo->x_max)
 	{

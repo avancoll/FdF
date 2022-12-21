@@ -6,11 +6,20 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:37:08 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 17:00:17 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:00:22 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+char	*ft_free(char *s1, char *s2)
+{
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
+	return (NULL);
+}
 
 char	*ft_get_line(char *save)
 {
@@ -78,7 +87,7 @@ char	*ft_read(int fd, char *save)
 		if (check == -1)
 			return (ft_free(buff, save));
 		buff[check] = 0;
-		save = ft_strjoin_free(save, buff);
+		save = ft_strjoin(save, buff);
 		if (!save)
 			return (ft_free(buff, NULL));
 	}
@@ -86,27 +95,6 @@ char	*ft_read(int fd, char *save)
 	if (save[0] == 0 && check == 0)
 		return (ft_free(save, NULL));
 	return (save);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*dst;
-
-	i = 0;
-	while (s1[i])
-		i++;
-	dst = malloc(sizeof(char) * (i + 1));
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		dst[i] = s1[i];
-		i++;
-	}
-	dst[i] = 0;
-	return (dst);
 }
 
 char	*get_next_line(int fd)

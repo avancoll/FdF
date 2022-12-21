@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:48:15 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 17:07:57 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:51:51 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,14 @@
 int	error_handler(int event)
 {
 	if (event == 1)
-		write(1, "Wrong number of argument\n", 26);
+		write(1, "Wrong number of argument", 25);
 	else if (event == 2)
-		write(1, "Wrong map\n", 11);
-	return (1);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
-	size_t	res;
-
-	i = 0;
-	while ((s1[i] || s2[i]) && s1[i] == s2[i])
-		i++;
-	res = (unsigned char)s1[i] - (unsigned char)s2[i];
-	return (res);
+		write(1, "Wrong map", 10);
+	else if (event == 3)
+		write(1, "Wrong extension", 16);
+	else if (event == 4)
+		write(1, "Error due to malloc", 20);
+	return (0);
 }
 
 int	filename_checker(char *str)
@@ -38,6 +30,14 @@ int	filename_checker(char *str)
 	if (ft_strlen(str) > 4)
 		if (ft_strcmp(str + ft_strlen(str) - 4, ".fdf") == 0)
 			return (1);
-	write(1, "Wrong extension", 16);
 	return (0);
+}
+
+int	free_data(t_data *data, int event)
+{
+	free(data->key);
+	free(data->coo);
+	free(data->map);
+	free(data->draw);
+	return (error_handler(event));
 }

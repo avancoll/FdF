@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 17:05:21 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:39:31 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ char	*ft_read(int fd, char *save);
 char	*get_next_line(int fd);
 
 void	mlx_put_pixel(t_data *data, int x, int y, int color);
+void	mlx_handler(t_data *data);
 void	init_data(t_data *data);
 int		ft_close(t_data *data);
 int		key_pressed(int keycode, t_data *data);
@@ -176,5 +177,13 @@ void	ft_swap(t_draw *draw);
 void	background_filler(t_data *data, int color);
 int		error_handler(int event);
 int		filename_checker(char *str);
+void	map_sizer(t_data *data);
+void	map_sizer2(t_data *data);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strchr(char *s, int c);
+int		ft_strlen(char *str);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char *s1, char *s2);
+int		free_data(t_data *data, int event);
 
 #endif

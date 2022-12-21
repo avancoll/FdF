@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:25:51 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 16:48:55 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:23:19 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ int	key_released2(int keycode, t_data *data)
 		data->key->reset = 0;
 	if (keycode == KEY_P)
 		data->key->parallel_view = 0;
-	if (keycode == KEY_TAB)
-		data->key->menu = 0;
 	return (0);
 }
 

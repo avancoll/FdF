@@ -6,7 +6,7 @@
 #    By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:14:18 by avancoll          #+#    #+#              #
-#    Updated: 2022/12/19 15:47:38 by avancoll         ###   ########.fr        #
+#    Updated: 2022/12/21 17:00:36 by avancoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,13 @@ SRCS		=	SRCS/main.c\
 				SRCS/key_manager.c\
 				SRCS/key_manager_utils.c\
 				SRCS/get_next_line.c\
-				SRCS/get_next_line_utils.c\
 				SRCS/parsing.c\
 				SRCS/lst_map.c\
 				SRCS/draw_map.c\
 				SRCS/draw_line.c\
-				SRCS/error_handler.c
+				SRCS/error_handler.c\
+				SRCS/mlx_handler.c\
+				SRCS/utils.c
 
 OBJS		= $(SRCS:.c=.o)
 
