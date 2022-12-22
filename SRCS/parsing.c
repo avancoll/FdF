@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 17:42:24 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:37:17 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ int	int_counter(char *s)
 	return (count);
 }
 
+t_list	*free_list(char *line, t_list *map, int fd)
+{
+	if (line)
+		free(line);
+	if (map)
+		free(map);
+	if (fd)
+	close(fd);
+	return (NULL);
+}
+
 t_list	*list_creator(char *argv)
 {
 	int		fd;
@@ -52,16 +63,16 @@ t_list	*list_creator(char *argv)
 	line = get_next_line(fd);
 	map = ft_lstnew(line);
 	if (!line || !map)
-		return (NULL);
+		return (free_list(line, map, fd));
 	map->y = int_counter(line);
 	while (line)
 	{
 		line = get_next_line(fd);
 		if (line && map->y != int_counter(line))
-			return (NULL);//gerer cas d'erreur
+			return (NULL);
 		new = ft_lstnew(line);
 		if (!new)
-			return (NULL);
+			return (free_list(line, map, fd));
 		ft_lstadd_back(&map, new);
 	}
 	map->x = ft_lstsize(map) - 1;
@@ -101,6 +112,20 @@ t_coo	*ft_free_int(int **z, int x)
 	return (NULL);
 }
 
+void	free_map(t_list *map)
+{
+	t_list	*temp;
+
+	while (map)
+	{
+		free(map->content);
+		temp = map;
+		map = map->next;
+		free(temp);
+	}
+	free(map);
+}
+
 t_coo	*list_to_int(t_list *map, t_coo *coo)
 {
 	int		i;
@@ -118,7 +143,11 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 	{
 		coo->z[x] = malloc(sizeof(int) * coo->y_max);
 		if (!coo->z[x])
+		{
+			free_map(map);
+			free(coo);
 			return (ft_free_int(coo->z, x));
+		}
 		i = 0;
 		y = -1;
 		while (++y < coo->y_max)
