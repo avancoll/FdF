@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:48:15 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/21 18:51:51 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:34:17 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	error_handler(int event)
 		write(1, "Wrong extension", 16);
 	else if (event == 4)
 		write(1, "Error due to malloc", 20);
-	return (0);
+	// system("leaks fdf");
+	exit (0);
 }
 
 int	filename_checker(char *str)
@@ -37,7 +38,7 @@ int	free_data(t_data *data, int event)
 {
 	free(data->key);
 	free(data->coo);
-	free(data->map);
 	free(data->draw);
+	printf("%p | %p | %p | %p | %p | %p | %p | %p\n", data->map, data->coo, data->draw, data->key, data->mlx_ptr, data->img_ptr, data->win_ptr, data->addr);
 	return (error_handler(event));
 }

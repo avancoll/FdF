@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/21 18:50:45 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:40:31 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ int	malloc_data(t_data *data)
 	data->coo = malloc(sizeof(t_coo));
 	if (!data->coo)
 		return (0);
-	data->map = malloc(sizeof(t_list));
-	if (!data->map)
-		return (0);
+	data->map = NULL;
 	data->draw = malloc(sizeof(t_draw));
 	if (!data->draw)
 		return (0);
@@ -112,11 +110,14 @@ int	main(int argc, char **argv)
 	data.coo = list_to_int(data.map, data.coo);
 	if (!data.coo)
 		return (free_data(&data, 4));
-	mlx_handler(&data);
-	init_data(&data);
-	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
-	mlx_hook(data.win_ptr, ON_KEYUP, 0, key_released, &data);
-	mlx_hook(data.win_ptr, ON_KEYDOWN, 0, key_pressed, &data);
-	mlx_loop_hook(data.mlx_ptr, exec_move, &data);
-	mlx_loop(data.mlx_ptr);
+	ft_free_int(data.coo->z, data.coo->x_max - 1);
+	free_data(&data, -1);
+	exit (0);
+// 	mlx_handler(&data);
+// 	init_data(&data);
+// 	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
+// 	mlx_hook(data.win_ptr, ON_KEYUP, 0, key_released, &data);
+// 	mlx_hook(data.win_ptr, ON_KEYDOWN, 0, key_pressed, &data);
+// 	mlx_loop_hook(data.mlx_ptr, exec_move, &data);
+// 	mlx_loop(data.mlx_ptr);
 }

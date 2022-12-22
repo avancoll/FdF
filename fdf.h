@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/21 18:39:31 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:36:39 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h> // maths
 # include <mlx.h> //minilibx
 # include <limits.h> //limits
+# include "wraloc.h"
 
 enum {
 	ON_KEYDOWN = 2,
@@ -185,5 +186,5 @@ int		ft_strlen(char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *s1, char *s2);
 int		free_data(t_data *data, int event);
-
+t_coo	*ft_free_int(int **z, int x);
 #endif

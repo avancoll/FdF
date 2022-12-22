@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/21 18:52:16 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:42:24 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_list	*list_creator(char *argv)
 	{
 		line = get_next_line(fd);
 		if (line && map->y != int_counter(line))
-			return (NULL);
+			return (NULL);//gerer cas d'erreur
 		new = ft_lstnew(line);
 		if (!new)
 			return (NULL);
@@ -106,6 +106,7 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 	int		i;
 	int		x;
 	int		y;
+	t_list	*temp;
 
 	coo->x_max = map->x;
 	coo->y_max = map->y;
@@ -122,7 +123,11 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 		y = -1;
 		while (++y < coo->y_max)
 			coo->z[x][y] = ft_atoi(map->content, &i);
+		free(map->content);
+		temp = map;
 		map = map->next;
+		free(temp);
 	}
+	free(map);
 	return (coo);
 }
