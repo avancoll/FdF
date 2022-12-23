@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:31:20 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 16:59:06 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:10:46 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../includes_bonus/fdf_bonus.h"
 
 void	draw_line1(t_data *data, int color)
 {

@@ -6,11 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:02:45 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 16:58:51 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:12 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../includes/fdf.h"
 
 t_list	*ft_lstnew(void *content)
 {

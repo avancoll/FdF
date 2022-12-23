@@ -6,11 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:57:27 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 16:10:06 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:36 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../includes/fdf.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

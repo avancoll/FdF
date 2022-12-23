@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 16:19:04 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:12:39 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
-# include <fcntl.h> //open
-# include <unistd.h> //close read write
-# include <stdlib.h> //malloc free
-# include <stdio.h> // perror
-# include <string.h> //strerror
-# include <stdlib.h> //exit
-# include <math.h> // maths
-# include <mlx.h> //minilibx
-# include <limits.h> //limits
-# include "wraloc.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
+# include <mlx.h>
+# include <limits.h>
 
 enum {
 	ON_KEYDOWN = 2,

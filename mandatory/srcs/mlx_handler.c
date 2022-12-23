@@ -6,11 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:50:33 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/21 18:31:00 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:14 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../includes/fdf.h"
 
 void	mlx_put_pixel(t_data *data, int x, int y, int color)
 {

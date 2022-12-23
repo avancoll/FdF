@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_manager.c                                      :+:      :+:    :+:   */
+/*   key_manager_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:25:51 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/21 15:23:19 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:12:47 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../includes_bonus/fdf_bonus.h"
 
 int	key_pressed2(int keycode, t_data *data)
 {

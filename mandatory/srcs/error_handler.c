@@ -6,11 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:48:15 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 16:18:12 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:13:10 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../includes/fdf.h"
 
 int	error_handler(int event)
 {
