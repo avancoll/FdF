@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:10 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/19 14:19:36 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:14:44 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,28 @@ void	ft_swap(t_draw *draw)
 	}
 }
 
+void	draw_map2(t_data *data, int event)
+{
+	data->draw->ay = 0;
+	while (data->draw->ay < data->coo->y_max)
+	{
+		data->draw->ax = 0;
+		while (data->draw->ax < data->coo->x_max - 1)
+		{
+			data->draw->x0 = x_calc(data);
+			data->draw->y0 = y_calc(data);
+			data->draw->ax++;
+			data->draw->x1 = x_calc(data);
+			data->draw->y1 = y_calc(data);
+			if (event == 0)
+				bresenham(data, data->key->base_color);
+			else if (event == 1)
+				bresenham(data, data->key->background_color);
+		}
+		data->draw->ay++;
+	}
+}
+
 void	draw_map(t_data *data, int event)
 {
 	data->draw->ax = 0;
@@ -86,26 +108,4 @@ void	draw_map(t_data *data, int event)
 		data->draw->ax++;
 	}
 	draw_map2(data, event);
-}
-
-void	draw_map2(t_data *data, int event)
-{
-	data->draw->ay = 0;
-	while (data->draw->ay < data->coo->y_max)
-	{
-		data->draw->ax = 0;
-		while (data->draw->ax < data->coo->x_max - 1)
-		{
-			data->draw->x0 = x_calc(data);
-			data->draw->y0 = y_calc(data);
-			data->draw->ax++;
-			data->draw->x1 = x_calc(data);
-			data->draw->y1 = y_calc(data);
-			if (event == 0)
-				bresenham(data, data->key->base_color);
-			else if (event == 1)
-				bresenham(data, data->key->background_color);
-		}
-		data->draw->ay++;
-	}
 }

@@ -6,20 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:37:08 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 16:02:57 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:10:06 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-char	*ft_free(char *s1, char *s2)
-{
-	if (s1)
-		free(s1);
-	if (s2)
-		free(s2);
-	return (NULL);
-}
 
 char	*ft_get_line(char *save)
 {
@@ -59,10 +50,10 @@ char	*ft_after_line(char *save)
 	while (save[i] && save[i] != '\n')
 		i++;
 	if (!save[i])
-		return (ft_free(save, NULL));
+		return (free_char(save, NULL));
 	res = malloc(sizeof(char) * (ft_strlen(save) - i + 1));
 	if (!res)
-		return (ft_free(save, NULL));
+		return (free_char(save, NULL));
 	i++;
 	j = 0;
 	while (save[i])
@@ -85,15 +76,15 @@ char	*ft_read(int fd, char *save)
 	{
 		check = read(fd, buff, BUFFER_SIZE);
 		if (check == -1)
-			return (ft_free(buff, save));
+			return (free_char(buff, save));
 		buff[check] = 0;
 		save = ft_strjoin(save, buff);
 		if (!save)
-			return (ft_free(buff, NULL));
+			return (free_char(buff, NULL));
 	}
 	free(buff);
 	if (save[0] == 0 && check == 0)
-		return (ft_free(save, NULL));
+		return (free_char(save, NULL));
 	return (save);
 }
 
@@ -109,7 +100,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(save);
 	if (!line)
-		return (ft_free(save, NULL));
+		return (free_char(save, NULL));
 	save = ft_after_line(save);
 	return (line);
 }

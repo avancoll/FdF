@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:57:27 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 16:03:16 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:10:06 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
-		return (ft_free(s1, 0));
+		return (free_char(s1, 0));
 	i = -1;
 	j = 0;
 	if (s1)

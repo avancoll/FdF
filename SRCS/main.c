@@ -6,35 +6,11 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 15:00:03 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:12:36 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	map_sizer(t_data *data)
-{
-	if (data->map->x <= 15 && data->map->y <= 15)
-	{
-		data->key->zoom = 50;
-		data->key->offset_x = 960;
-		data->key->offset_y = 350;
-	}
-	else if (data->map->x <= 20 && data->map->y <= 50)
-	{
-		data->key->zoom = 50;
-		data->key->offset_x = 800;
-		data->key->offset_y = 100;
-	}
-	else if (data->map->x <= 50 && data->map->y <= 100)
-	{
-		data->key->offset_x = 900;
-		data->key->offset_y = 50;
-		data->key->zoom = 20;
-	}
-	else
-		map_sizer2(data);
-}
 
 void	map_sizer2(t_data *data)
 {
@@ -62,6 +38,30 @@ void	map_sizer2(t_data *data)
 		data->key->offset_x = 960;
 		data->key->offset_y = 30;
 	}
+}
+
+void	map_sizer(t_data *data)
+{
+	if (data->map->x <= 15 && data->map->y <= 15)
+	{
+		data->key->zoom = 50;
+		data->key->offset_x = 960;
+		data->key->offset_y = 350;
+	}
+	else if (data->map->x <= 20 && data->map->y <= 50)
+	{
+		data->key->zoom = 50;
+		data->key->offset_x = 800;
+		data->key->offset_y = 100;
+	}
+	else if (data->map->x <= 50 && data->map->y <= 100)
+	{
+		data->key->offset_x = 900;
+		data->key->offset_y = 50;
+		data->key->zoom = 20;
+	}
+	else
+		map_sizer2(data);
 }
 
 void	init_data(t_data *data)

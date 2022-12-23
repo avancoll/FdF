@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 15:16:45 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:18:07 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,27 +78,6 @@ t_list	*list_creator(char *argv)
 	map->x = ft_lstsize(map) - 1;
 	close(fd);
 	return (map);
-}
-
-t_coo	*free_map(t_list *map, t_coo *coo, int **z, int x)
-{
-	t_list	*temp;
-
-	while (x >= 0)
-		free(z[x--]);
-	free(z);
-	while (map)
-	{
-		free(map->content);
-		temp = map;
-		map = map->next;
-		free(temp);
-	}
-	if (map)
-		free(map);
-	if (coo)
-		free(coo);
-	return (NULL);
 }
 
 t_list	*free_content(t_list *map)

@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:48:15 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 18:26:01 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:18:12 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,34 @@ int	free_data(t_data *data, int event)
 	free(data->coo);
 	free(data->draw);
 	return (error_handler(event));
+}
+
+char	*free_char(char *s1, char *s2)
+{
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
+	return (NULL);
+}
+
+t_coo	*free_map(t_list *map, t_coo *coo, int **z, int x)
+{
+	t_list	*temp;
+
+	while (x >= 0)
+		free(z[x--]);
+	free(z);
+	while (map)
+	{
+		free(map->content);
+		temp = map;
+		map = map->next;
+		free(temp);
+	}
+	if (map)
+		free(map);
+	if (coo)
+		free(coo);
+	return (NULL);
 }
