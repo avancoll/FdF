@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:20:32 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 17:36:39 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:40:00 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ enum {
 enum {
 	SIZE_X = 1920,
 	SIZE_Y = 1080,
-	BUFFER_SIZE = 42
+	BUFFER_SIZE = 10000
 };
 
 typedef struct s_list
@@ -186,5 +186,8 @@ int		ft_strlen(char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *s1, char *s2);
 int		free_data(t_data *data, int event);
-t_coo	*ft_free_int(int **z, int x);
+t_coo	*free_map(t_list *map, t_coo *coo, int **z, int x);
+char	*ft_free(char *s1, char *s2);
+int		ft_atoi(const char *str, int *i);
+
 #endif

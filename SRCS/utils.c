@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:57:27 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 18:03:34 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:03:16 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = malloc(sizeof(char) * 1);
+		if (!s1)
+			return (NULL);
 		s1[0] = 0;
 	}
-	if (!s1 || !s2)
-		return (NULL);
 	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
-		return (NULL);
+		return (ft_free(s1, 0));
 	i = -1;
 	j = 0;
 	if (s1)
@@ -80,4 +80,28 @@ char	*ft_strjoin(char *s1, char *s2)
 	res[ft_strlen(s1) + ft_strlen(s2)] = 0;
 	free(s1);
 	return (res);
+}
+
+int	ft_atoi(const char *str, int *i)
+{
+	unsigned int		res;
+	int					sign;
+
+	res = 0;
+	sign = 1;
+	if (str[*i] && str[*i] == ',')
+		while (str[*i] && str[*i] != ' ')
+			(*i)++;
+	while (str[*i] == ' ')
+		(*i)++;
+	if (str[*i] == '-')
+	{
+		(*i)++;
+		sign = -sign;
+	}
+	while (str[*i] && str[*i] >= '0' && str[*i] <= '9')
+		res = res * 10 + str[(*i)++] - 48;
+	if (res >= INT_MAX / 8)
+		res = 0;
+	return (res * sign);
 }

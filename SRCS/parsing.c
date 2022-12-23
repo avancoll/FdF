@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:05:13 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 18:37:17 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:16:45 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_list	*free_list(char *line, t_list *map, int fd)
 	if (map)
 		free(map);
 	if (fd)
-	close(fd);
+		close(fd);
 	return (NULL);
 }
 
@@ -69,7 +69,7 @@ t_list	*list_creator(char *argv)
 	{
 		line = get_next_line(fd);
 		if (line && map->y != int_counter(line))
-			return (NULL);
+			return (free_list(line, map, fd));
 		new = ft_lstnew(line);
 		if (!new)
 			return (free_list(line, map, fd));
@@ -80,42 +80,13 @@ t_list	*list_creator(char *argv)
 	return (map);
 }
 
-int	ft_atoi(const char *str, int *i)
-{
-	unsigned int		res;
-	int					sign;
-
-	res = 0;
-	sign = 1;
-	if (str[*i] && str[*i] == ',')
-		while (str[*i] && str[*i] != ' ')
-			(*i)++;
-	while (str[*i] == ' ')
-		(*i)++;
-	if (str[*i] == '-')
-	{
-		(*i)++;
-		sign = -sign;
-	}
-	while (str[*i] && str[*i] >= '0' && str[*i] <= '9')
-		res = res * 10 + str[(*i)++] - 48;
-	if (res >= INT_MAX / 8)
-		res = 0;
-	return (res * sign);
-}
-
-t_coo	*ft_free_int(int **z, int x)
-{
-	while (x >= 0)
-		free(z[x--]);
-	free(z);
-	return (NULL);
-}
-
-void	free_map(t_list *map)
+t_coo	*free_map(t_list *map, t_coo *coo, int **z, int x)
 {
 	t_list	*temp;
 
+	while (x >= 0)
+		free(z[x--]);
+	free(z);
 	while (map)
 	{
 		free(map->content);
@@ -123,7 +94,22 @@ void	free_map(t_list *map)
 		map = map->next;
 		free(temp);
 	}
-	free(map);
+	if (map)
+		free(map);
+	if (coo)
+		free(coo);
+	return (NULL);
+}
+
+t_list	*free_content(t_list *map)
+{
+	t_list	*temp;
+
+	free(map->content);
+	temp = map;
+	map = map->next;
+	free(temp);
+	return (map);
 }
 
 t_coo	*list_to_int(t_list *map, t_coo *coo)
@@ -131,31 +117,23 @@ t_coo	*list_to_int(t_list *map, t_coo *coo)
 	int		i;
 	int		x;
 	int		y;
-	t_list	*temp;
 
 	coo->x_max = map->x;
 	coo->y_max = map->y;
 	coo->z = malloc(sizeof(*coo->z) * coo->x_max);
 	if (!coo->z)
-		return (ft_free_int(0, -1));
+		return (free_map(map, coo, 0, -1));
 	x = -1;
 	while (++x < coo->x_max)
 	{
 		coo->z[x] = malloc(sizeof(int) * coo->y_max);
 		if (!coo->z[x])
-		{
-			free_map(map);
-			free(coo);
-			return (ft_free_int(coo->z, x));
-		}
+			return (free_map(map, coo, coo->z, x));
 		i = 0;
 		y = -1;
 		while (++y < coo->y_max)
 			coo->z[x][y] = ft_atoi(map->content, &i);
-		free(map->content);
-		temp = map;
-		map = map->next;
-		free(temp);
+		map = free_content(map);
 	}
 	free(map);
 	return (coo);

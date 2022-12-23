@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/22 18:35:25 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:00:03 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,10 @@ int	main(int argc, char **argv)
 	check = malloc_data(&data);
 	if (!check)
 		return (error_handler(4));
-
 	data.map = list_creator(argv[1]);
 	if (!data.map)
 		return (free_data(&data, 2));
 	data.coo = list_to_int(data.map, data.coo);
-	printf("%p\n", data.coo);
 	if (!data.coo)
 		return (free_data(&data, 4));
 	mlx_handler(&data);
