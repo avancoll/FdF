@@ -6,7 +6,7 @@
 /*   By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:22:41 by avancoll          #+#    #+#             */
-/*   Updated: 2022/12/23 17:13:13 by avancoll         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:46:15 by avancoll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	map_sizer2(t_data *data)
 {
-	if (data->map->x <= 100 && data->map->y <= 150)
+	if (data->coo->x_max <= 100 && data->coo->y_max <= 150)
 	{
 		data->key->zoom = 10;
 		data->key->offset_x = 960;
 		data->key->offset_y = 30;
 	}
-	else if (data->map->x <= 150 && data->map->y <= 200)
+	else if (data->coo->x_max <= 150 && data->coo->y_max <= 200)
 	{
 		data->key->zoom = 6;
 		data->key->offset_x = 760;
 		data->key->offset_y = 80;
 	}
-	else if (data->map->x <= 200 && data->map->y <= 250)
+	else if (data->coo->x_max <= 200 && data->coo->y_max <= 250)
 	{
 		data->key->zoom = 4;
 		data->key->offset_x = 960;
@@ -42,19 +42,19 @@ void	map_sizer2(t_data *data)
 
 void	map_sizer(t_data *data)
 {
-	if (data->map->x <= 15 && data->map->y <= 15)
+	if (data->coo->x_max <= 15 && data->coo->y_max <= 15)
 	{
 		data->key->zoom = 50;
 		data->key->offset_x = 960;
 		data->key->offset_y = 350;
 	}
-	else if (data->map->x <= 20 && data->map->y <= 50)
+	else if (data->coo->x_max <= 20 && data->coo->y_max <= 50)
 	{
 		data->key->zoom = 50;
 		data->key->offset_x = 800;
 		data->key->offset_y = 100;
 	}
-	else if (data->map->x <= 50 && data->map->y <= 100)
+	else if (data->coo->x_max <= 50 && data->coo->y_max <= 100)
 	{
 		data->key->offset_x = 900;
 		data->key->offset_y = 50;
@@ -109,9 +109,9 @@ int	main(int argc, char **argv)
 		return (free_data(&data, 4));
 	mlx_handler(&data);
 	init_data(&data);
-	draw_map(&data);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);
 	mlx_hook(data.win_ptr, ON_DESTROY, 0, ft_close, &data);
 	mlx_hook(data.win_ptr, ON_KEYDOWN, 0, key_pressed, &data);
+	draw_map(&data);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);
 	mlx_loop(data.mlx_ptr);
 }

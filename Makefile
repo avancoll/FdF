@@ -6,7 +6,7 @@
 #    By: avancoll <avancoll@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/04 15:14:18 by avancoll          #+#    #+#              #
-#    Updated: 2022/12/23 17:10:19 by avancoll         ###   ########.fr        #
+#    Updated: 2022/12/23 17:43:58 by avancoll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(NAME):	$(OBJS)
 
 $(NAME_BONUS):	$(OBJS_BONUS)
 	ar -rc $(NAME_BONUS) $(OBJS_BONUS)
-	$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME_BONUS) -o $(EXEC_BONUS) -lm
+	$(CC) -lmlx -framework OpenGL -framework AppKit $(NAME_BONUS) -o $(EXEC_BONUS) -lm -O2 -O3 -Os
 
 all:	$(NAME)
 
